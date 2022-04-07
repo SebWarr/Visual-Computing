@@ -73,6 +73,75 @@ Cuando los contornos naranjas se reemplazan por violetas, las costas del Mediter
 
 {{< /columns >}}
 
+{{< p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
+function setup() {
+  createCanvas(500, 500);
+}
+
+function draw() {
+  
+  //Figura 1
+  stroke(/'#800080/');
+  line(40,80,120,80);
+  line(120,80,120,100);
+  line(120,100,140,100);
+  line(140,100,140,120);
+  line(140,120,160,120);
+  line(160,120,160,200);
+  line(160,200,100,200)
+  line(100,200,100,140)
+  line(100,140,60,140)
+  line(60,140,60,200)
+  line(60,200,40,200)
+  line(40,200,40,80)
+  
+  stroke('#F39C12');
+  line(41,81,119,81);
+  line(119,81,119,100);
+  line(119,101,139,101);
+  line(139,101,139,121);
+  line(139,121,159,121);
+  line(159,121,159,199);
+  line(159,199,101,199)
+  line(101,199,101,141)
+  line(101,139,59,139)
+  line(59,139,59,199)
+  line(59,199,41,199)
+  line(41,199,41,81)
+  
+  //Figura 2
+  stroke('#000080');
+  line(200,80,400,80);
+  line(400,80,400,200);
+  line(400,200,200,200);
+  line(200,200,200,80);
+  
+  stroke('#FFFF00');
+  line(201,81,399,81);
+  line(399,81,399,199);
+  line(399,199,201,199);
+  line(201,199,201,81);
+  
+  stroke('#FFFF00');
+  line(230,120,350,120);
+  line(350,120,350,170);
+  line(350,170,230,170);
+  line(230,170,230,120);
+  
+  stroke('#000080');
+  line(231,121,349,121);
+  line(349,121,349,169);
+  line(349,169,231,169);
+  line(231,169,231,121);
+}function setup() {
+  createCanvas(300, 300);
+}
+
+function draw() {
+  background(255, 0, 255);
+}
+{{< /p5-widget >}}
+
 ## Conclusiones
 
  - El efecto de fondo de figura hace que un objeto parezca sólido y opaco, es decir, el objeto parece como si pudiera ser el fondo o la figura. Al cambiar las dos curvas de nivel, se invierte la percepción de los estímulos.
