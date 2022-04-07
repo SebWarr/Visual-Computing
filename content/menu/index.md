@@ -3,6 +3,7 @@ headless: true
 ---
 
 - **Shortcodes**
+- [Talleres]({{< relref "/docs/shortcodes/talleres" >}})
 - [p5]({{< relref "/docs/shortcodes/p5" >}})
 - [Buttons]({{< relref "/docs/shortcodes/buttons" >}})
 - [Columns]({{< relref "/docs/shortcodes/columns" >}})
