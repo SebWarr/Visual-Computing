@@ -75,7 +75,7 @@ Cuando los contornos naranjas se reemplazan por violetas, las costas del Mediter
 
 {{< p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(420, 300);
 }
 
 function draw() {
