@@ -75,13 +75,13 @@ Cuando los contornos naranjas se reemplazan por violetas, las costas del Mediter
 
 {{< p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(420, 300);
 }
 
 function draw() {
   
   //Figura 1
-  stroke(/'#800080/');
+  stroke(128,0,128);
   line(40,80,120,80);
   line(120,80,120,100);
   line(120,100,140,100);
@@ -95,7 +95,7 @@ function draw() {
   line(60,200,40,200)
   line(40,200,40,80)
   
-  stroke('#F39C12');
+  stroke(243,156,18);
   line(41,81,119,81);
   line(119,81,119,100);
   line(119,101,139,101);
@@ -110,35 +110,29 @@ function draw() {
   line(41,199,41,81)
   
   //Figura 2
-  stroke('#000080');
+  stroke(0,0,128);
   line(200,80,400,80);
   line(400,80,400,200);
   line(400,200,200,200);
   line(200,200,200,80);
   
-  stroke('#FFFF00');
+  stroke(255,255,0);
   line(201,81,399,81);
   line(399,81,399,199);
   line(399,199,201,199);
   line(201,199,201,81);
   
-  stroke('#FFFF00');
+  stroke(255,255,0);
   line(230,120,350,120);
   line(350,120,350,170);
   line(350,170,230,170);
   line(230,170,230,120);
   
-  stroke('#000080');
+  stroke(0,0,128);
   line(231,121,349,121);
   line(349,121,349,169);
   line(349,169,231,169);
   line(231,169,231,121);
-}function setup() {
-  createCanvas(300, 300);
-}
-
-function draw() {
-  background(255, 0, 255);
 }
 {{< /p5-widget >}}
 
