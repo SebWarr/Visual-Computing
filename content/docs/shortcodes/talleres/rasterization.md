@@ -20,7 +20,7 @@ Los gráficos rasterizados a menudo se comparan con los vectores de imagen. Si b
 
 A lo largo de los primeros años de los gráficos por computadora en la década de los 70s, los problemas más importantes a resolver fueron cuestiones fundamentales como los algoritmos de visibilidad y las representaciones geométricas. Cuando 1 MB de RAM era un lujo costoso y bastante escaso,  la complejidad de lo que era posible en los gráficos por computadora era correspondientemente limitada y cualquier intento de simular la física para renderizar era muy poco factible.
 
-La simple declaración de Jim Blinn ("a medida que avanza la tecnología, el tiempo de renderizado permanece constante") detalla una restricción importante: dada una cantidad de imágenes que se deben renderizar, solo es posible tomar cierto tiempo de procesamiento para cada uno. Uno tiene una cierta cantidad de cómputo disponible y otro tiene una cierta cantidad de tiempo disponible antes de que se deba terminar el renderizado, por lo que el cómputo máximo por imagen está necesariamente limitado. La ley de Blinn también expresa la observación de que sigue habiendo una brecha entre las imágenes que a las personas les gustaría poder renderizar y las imágenes que pueden renderizar.
+La simple declaración de Jim Blinn ("a medida que avanza la tecnología, el tiempo de renderizado permanece constante") detalla una restricción importante: dada una cantidad de imágenes que se deben renderizar, solo es posible tomar cierto tiempo de procesamiento para cada uno. Uno tiene una cierta cantidad de cómputo disponible y otro tiene una cierta cantidad de tiempo disponible antes de que se deba terminar el renderizado, por lo que el cómputo máximo por imagen está necesariamente limitado.
 
 ## Conceptos clave
 
@@ -351,7 +351,15 @@ function barycentricCoord(p, redPoint, greenPoint, bluePoint) {
 {{< /p5-global-iframe >}}
 
 ## Conclusiones
- - La calidad de la rasterización se puede mejorar utilizando antialiasing, dado que este genera bordes "suaves". La precisión de subpíxeles es un método que tiene en cuenta las posiciones en una escala más fina que la cuadrícula de píxeles y puede producir resultados diferentes incluso si los puntos finales de una primitiva caen en las mismas coordenadas de píxeles, produciendo animaciones de movimiento más suaves. El hardware simple o más antiguo, como PlayStation 1, carecía de precisión de subpíxeles en la rasterización 3D.[7]
+ - La calidad de la rasterización se puede mejorar utilizando antialiasing, dado que este genera bordes "suaves". 
+
+ - Aún cuando la rasterización es una técnica bastante antigua esto no impide que sea una técnica sumamente eficiente y que se siga utilizando en la actualidad sacando ventaja del "boom" de las tarjetas gráficas
+
+- La ley de Blinn expresa la observación de que sigue habiendo una brecha entre las imágenes que a las personas les gustaría poder renderizar y las imágenes que pueden renderizar.
+ 
+ - La precisión de los subpíxeles es un método que tiene en cuenta las posiciones en una escala más fina que la cuadrícula de píxeles y puede producir resultados diferentes incluso si los puntos finales de una primitiva caen en las mismas coordenadas de píxeles, produciendo animaciones de movimiento más suaves.
+
+ - El ray-tracing es el primer enfoque posible para resolver el problema de la visibilidad. Decimos que la técnica se centra en la imagen porque "disparamos" rayos desde la cámara hacia la escena (comenzamos desde la imagen) en lugar de al revés, que es el enfoque que usaremos en la rasterización.
 
 
 ## Referencias
@@ -360,3 +368,4 @@ function barycentricCoord(p, redPoint, greenPoint, bluePoint) {
  - [Technopedia, (2022). Rasterization](https://www.techopedia.com/definition/13169/rasterization#:~:text=The%20origin%20of%20image%20rasterization,gradually%20accumulated%20into%20complete%20images)
  - [Scratchapixel 2.0, (2009-2022). Rasterization: a Practical Implementation](https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/overview-rasterization-algorithm)
  - [Edward Carrillo, (2017). Rasterization: Z-buffer Algorithm](https://eccarrilloe.github.io/2017/09/24/Rasterization-Z-buffer-Algorithm/)
+ - [Fabian Giesen, (2013). The barycentric conspiracy](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/)
