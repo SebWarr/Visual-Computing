@@ -1,13 +1,18 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="3D Brush #  Introducción #  Resultados #          Wiimote Home  var info; var accelero; // Goal in the 3d Brush is double, to implement: // 1. a gesture parser to deal with depth, i.e., // replace the depth slider with something really // meaningful. You may use a 3d sensor hardware // such as: https://en.wikipedia.org/wiki/Leap_Motion // or machine learning software to parse hand (or // body) gestures from a (video) / image, such as: // https://ml5js."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="3D Brush #  Introducción #  Resultados #          Wiimote Home  var info; var accelero; // Goal in the 3d Brush is double, to implement: // 1. a gesture parser to deal with depth, i.e., // replace the depth slider with something really // meaningful. You may use a 3d sensor hardware // such as: https://en.wikipedia.org/wiki/Leap_Motion // or machine learning software to parse hand (or // body) gestures from a (video) / image, such as: // https://ml5js."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/3D-brush/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-05-26T03:16:49-05:00"><title>3 D Brush | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
-<script defer src=/Visual-Computing/en.search.min.6dc99b11b6513b8a191057ab2b221deddc3638efb89dad85b14540c37b22b4c4.js integrity="sha256-bcmbEbZRO4oZEFerKyId7dw2OO+4na2FsUVAw3sitMQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="3D Brush #  Introducción #  En esta implementación de el Pincel en 3D (3D Brush), se utiliza un control remoto de un Nintendo Wii (Wiimote) para el control del dibujo y movimiento del plano. Esto se suma al uso de TreeGL y EasyCAM.
+El Control Remoto #  El Wiimote es el control remoto de la Consola Nintendo Wii (2006 - 2017); utiliza tecnología Bluetooth para la conexión con el Wii y con otros dispositivos."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="3D Brush #  Introducción #  En esta implementación de el Pincel en 3D (3D Brush), se utiliza un control remoto de un Nintendo Wii (Wiimote) para el control del dibujo y movimiento del plano. Esto se suma al uso de TreeGL y EasyCAM.
+El Control Remoto #  El Wiimote es el control remoto de la Consola Nintendo Wii (2006 - 2017); utiliza tecnología Bluetooth para la conexión con el Wii y con otros dispositivos."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/3D-brush/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-05-26T04:23:02-05:00"><title>3 D Brush | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
+<script defer src=/Visual-Computing/en.search.min.b22c91fad717939fe7a421ddec14855923189407bbed3b29ef62b2c201e464e0.js integrity="sha256-siyR+tcXk5/npCHd7BSFWSMYlAe77Tsp72KywgHkZOA=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/Visual-Computing/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><a href=/Visual-Computing/docs/shortcodes/buttons/>Buttons</a></li><li><a href=/Visual-Computing/docs/shortcodes/columns/>Columns</a></li><li><a href=/Visual-Computing/docs/shortcodes/details/>Details</a></li><li><a href=/Visual-Computing/docs/shortcodes/expand/>Expand</a></li><li><a href=/Visual-Computing/docs/shortcodes/hints/>Hints</a></li><li><a href=/Visual-Computing/docs/shortcodes/katex/>Katex</a></li><li><a href=/Visual-Computing/docs/shortcodes/mermaid/>Mermaid</a></li><li><input type=checkbox id=section-ec67a64aba70b9df3d2a9acd6c92e3bc class=toggle>
 <label for=section-ec67a64aba70b9df3d2a9acd6c92e3bc class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/p5/>P5</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/p5/div/>Div</a></li><li><a href=/Visual-Computing/docs/shortcodes/p5/iframe/>Iframe</a></li></ul></li><li><a href=/Visual-Computing/docs/shortcodes/tabs/>Tabs</a></li><li><input type=checkbox id=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class=toggle checked>
 <label for=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/talleres/>Talleres</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/talleres/3D-brush/ class=active>3 D Brush</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/rasterization/>Rasterization</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/watercolor/>Watercolor</a></li></ul></li></ul></li></ul><ul><li><a href=/Visual-Computing/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/Visual-Computing/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>3 D Brush</strong>
-<label for=toc-control><img src=/Visual-Computing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#resultados>Resultados</a></li><li><a href=#conclusiones>Conclusiones</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=3d-brush>3D Brush
+<label for=toc-control><img src=/Visual-Computing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#el-control-remoto>El Control Remoto</a><ul><li><a href=#la-conexión-wiimote-for-the-web>La conexión; Wiimote for the Web</a></li><li><a href=#integración>Integración</a></li></ul></li><li><a href=#resultados--implementación>Resultados / Implementación.</a></li><li><a href=#apreciaciones-y-conclusiones>Apreciaciones y Conclusiones</a></li><li><a href=#referencias-y-consulta-avanzada>Referencias y consulta avanzada.</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=3d-brush>3D Brush
 <a class=anchor href=#3d-brush>#</a></h1><h2 id=introducción>Introducción
-<a class=anchor href=#introducci%c3%b3n>#</a></h2><h2 id=resultados>Resultados
-<a class=anchor href=#resultados>#</a></h2><iframe frameborder=0 style=width:700px;height:600px srcdoc="
+<a class=anchor href=#introducci%c3%b3n>#</a></h2><p>En esta implementación de el Pincel en 3D (3D Brush), se utiliza un control remoto de un Nintendo Wii (Wiimote) para el control del dibujo y movimiento del plano. Esto se suma al uso de TreeGL y EasyCAM.</p><h2 id=el-control-remoto>El Control Remoto
+<a class=anchor href=#el-control-remoto>#</a></h2><p><img src=https://i.blogs.es/8ba955/fundawii/450_1000.jpg alt=3dbrush1></p><p>El Wiimote es el control remoto de la Consola Nintendo Wii (2006 - 2017); utiliza tecnología Bluetooth para la conexión con el Wii y con otros dispositivos. Está construido sobre el SOC Broadcom BCM2042. A pesar de utilizar las interfaces estandar USB HID no utiliza los descriptores ni tipos de datos estandar por lo que son necesarios drivers o programas especializados para la conexión.</p><h3 id=la-conexión-wiimote-for-the-web>La conexión; Wiimote for the Web
+<a class=anchor href=#la-conexi%c3%b3n-wiimote-for-the-web>#</a></h3><p>En esta oportunidad se ha optado por utilizar la librería WiiMote for the Web, que se basa en la tecnología WebHID. WebHID aún se considera una tecnología de caracter experimental por lo que es necesario habilitarla para el uso en los navegadores soportados (basados en Chromium).</p><p>La librería combina el uso de WebHID y JavaScript para generar una interface que permite hacer uso de prácticamente todas las funcionalidades del WiiMote (bluetooth, botones, LEDs, vibración, infrarrojo, etc.).</p><h3 id=integración>Integración
+<a class=anchor href=#integraci%c3%b3n>#</a></h3><p>La librería nos entregará un arreglo con todos los botones y en caso de que alguno de ellos sea oprimido el elemento cambiará del valor &ldquo;false&rdquo; al valor &ldquo;true&rdquo;. Adicionalmente, también nos entregará los datos del acelerómetro integrado del control y funcionalidades para activar o desactivar los LED y el vibrador interno.</p><p>Es de resaltar que el Wiimote es un senson de infrarrojo en si mismo y la barra inicialmente incluida en los Wii únicamente cumplia la funcionalidad de contar con infrarrojos para que el control la viera.</p><p><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Nintendo_Wii_Sensor_Bar.jpg/640px-Nintendo_Wii_Sensor_Bar.jpg alt=3dbrush2></p><p>El principal reto en la implementación fue la integración de la librería con la interface de p5js y la normalización de los valores de algunos inputs para obtener la funcionalidad deseada.</p><h2 id=resultados--implementación>Resultados / Implementación.
+<a class=anchor href=#resultados--implementaci%c3%b3n>#</a></h2><iframe frameborder=0 style=width:700px;height:600px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -51,6 +56,7 @@ let control;
 let color;
 let depth;
 let brush;
+let selectBrush;
 
 let wiimoteX = 300;
 let wiimoteY = 225;
@@ -100,16 +106,13 @@ function setup() {
   depth.style('width', '580px');
   // slider
   depth.hide();
- 
-
   color = '#ffa500';
   
-  // select initial brush
-  brush = sphereBrush;
-  brush = triangleBrush;
+  
 }
 
 function draw() {
+  if(selectBrush){brush = cubeBrush;}else{brush = sphereBrush;}
   captureWiiMote();
   update();
   background('#343a40');
@@ -143,9 +146,9 @@ function captureWiiMote(){
   if(info.MINUS === true && info.PLUS === true){
     accelerometro = !accelerometro;
   }
-  /*if(info.TWO === true){
-    rotate = !rotate;
-  }*/
+  if(info.TWO === true){
+    selectBrush = !selectBrush;
+  }
   if(record){
   
     if(info.DPAD_RIGHT === true){
@@ -236,13 +239,13 @@ function sphereBrush(point) {
   pop();
 }
 
-function triangleBrush(point) {
+function cubeBrush(point) {
   push();
   noStroke();
   // TODO parameterize sphere radius and / or
   // alpha channel according to gesture speed
   fill(point.color);
-  triangle(1);
+  box(1);
   pop();
 }
 
@@ -277,6 +280,7 @@ function mouseWheel(event) {
           <body style='background-color:#343a40;'>
           </body>
         </html>
-      "></iframe><h2 id=conclusiones>Conclusiones
-<a class=anchor href=#conclusiones>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/aca419f119e1214f31e87852630229192452feb1 title="Last modified by Cesar David Pineda Osorio | May 26, 2022" target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
-<span>May 26, 2022</span></a></div></div><script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#resultados>Resultados</a></li><li><a href=#conclusiones>Conclusiones</a></li></ul></li></ul></nav></div></aside></main></body></html>
+      "></iframe><h2 id=apreciaciones-y-conclusiones>Apreciaciones y Conclusiones
+<a class=anchor href=#apreciaciones-y-conclusiones>#</a></h2><p>Lo más interesante fue ver la funcionalidad que aún presenta un dispositivo tan antiguo para los estandares de hoy como lo es el Wiimote; apesar de tener más de 15 años en el mercado, cuenta con funcionalidades bastante especiales que en su momento le hicieron un dispositivo único y posicionaron a la Wii consola más vendida en la historia de Nintendo.</p><p>Muy importantes tambien son las funcionalidades que aún puede tener un dispositivo como este; el sensor de infrarrojos abre todo tipo de posibilidades para la interacción con espacios en 3D. Esta es una funcionalidad que podría ser implementada en una nueva iteración.</p><p>Es importante mencionar que la librería p5.EasyCam contó con una gran facilidad de utilización y fue de facil implementación. A pesar de eso, mostró lo poderosa que puede llegar a ser en el manejo de espacios 3D al contar con funcionalidades como sobreo e iluminación avanzada.</p><p>Finalmente, se quiere mencionar el uso de una tecnología experimental como lo es WebHID; cuando esta tecnología logre ser adoptada de manera más amplia se abrirá la puerta a que los navegadores puedan acceder directamente a dispositivos de hardware (contoles, simuladores, dispositivos médicos, etc) sin la necesidad de drivers o modificaciones por parte de los usuarios. Desafortunadamente la única implementación actual de esta tecnología se encuentra en los navegadores basados en Chromium.</p><h2 id=referencias-y-consulta-avanzada>Referencias y consulta avanzada.
+<a class=anchor href=#referencias-y-consulta-avanzada>#</a></h2><ul><li><a href=https://github.com/PicchiKevin/wiimote-webhid>Kevin Picchi, Wiimote for the Web</a></li><li><a href=https://wicg.github.io/webhid/>W3C Community Group Draft Report - WebHID API (Marzo de 2022)</a></li><li><a href=https://p5js.org/es/reference/>p5.js - Referencia</a></li><li><a href=https://github.com/freshfork/p5.EasyCam>James William Dunn - Referencia p5.EasyCam</a></li><li><a href=https://gohugo.io/functions/>Hugo References</a></li><li><a href=https://es.wikipedia.org/wiki/Wiimote>Wiimote - Wikipedia, la enciclopedia libre</a></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/898da597b57555713d7a71b3be5e9c66259e0abf title="Last modified by Cesar David Pineda Osorio | May 26, 2022" target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
+<span>May 26, 2022</span></a></div></div><script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#el-control-remoto>El Control Remoto</a><ul><li><a href=#la-conexión-wiimote-for-the-web>La conexión; Wiimote for the Web</a></li><li><a href=#integración>Integración</a></li></ul></li><li><a href=#resultados--implementación>Resultados / Implementación.</a></li><li><a href=#apreciaciones-y-conclusiones>Apreciaciones y Conclusiones</a></li><li><a href=#referencias-y-consulta-avanzada>Referencias y consulta avanzada.</a></li></ul></li></ul></nav></div></aside></main></body></html>
