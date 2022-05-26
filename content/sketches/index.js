@@ -96,7 +96,7 @@ function initCanvas(){
   wiimote.AccListener = (x,y,z) => {
     x = (x*0.001)-0.135;
     y = (y*0.001)-0.138;
-    z = (z*0.001)-0.159;
+    z = (z*0.1)-15.9;
     accelero = {x,y,z};
     }
   /*
