@@ -352,3 +352,10 @@ function barycentricCoord(p, redPoint, greenPoint, bluePoint) {
 
 ## Conclusiones
 
+
+## Referencias
+
+ - [Matt Pharr, Wenzel Jakob, and Greg Humphreys, (2004-2021). Physically Based Rendering: From Theory To Implementation](https://pbr-book.org/3ed-2018/Introduction/A_Brief_History_of_Physically_Based_Rendering)
+ - [Technopedia, (2022). Rasterization](https://www.techopedia.com/definition/13169/rasterization#:~:text=The%20origin%20of%20image%20rasterization,gradually%20accumulated%20into%20complete%20images)
+ - [Scratchapixel 2.0, (2009-2022). Rasterization: a Practical Implementation](https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/overview-rasterization-algorithm)
+ - [Edward Carrillo, (2017). Rasterization: Z-buffer Algorithm](https://eccarrilloe.github.io/2017/09/24/Rasterization-Z-buffer-Algorithm/)
