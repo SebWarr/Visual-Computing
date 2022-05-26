@@ -1,0 +1,282 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="3D Brush #  Introducción #  Resultados #          Wiimote Home  var info; var accelero; // Goal in the 3d Brush is double, to implement: // 1. a gesture parser to deal with depth, i.e., // replace the depth slider with something really // meaningful. You may use a 3d sensor hardware // such as: https://en.wikipedia.org/wiki/Leap_Motion // or machine learning software to parse hand (or // body) gestures from a (video) / image, such as: // https://ml5js."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="3D Brush #  Introducción #  Resultados #          Wiimote Home  var info; var accelero; // Goal in the 3d Brush is double, to implement: // 1. a gesture parser to deal with depth, i.e., // replace the depth slider with something really // meaningful. You may use a 3d sensor hardware // such as: https://en.wikipedia.org/wiki/Leap_Motion // or machine learning software to parse hand (or // body) gestures from a (video) / image, such as: // https://ml5js."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/3D-brush/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-05-26T03:16:49-05:00"><title>3 D Brush | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
+<script defer src=/Visual-Computing/en.search.min.6dc99b11b6513b8a191057ab2b221deddc3638efb89dad85b14540c37b22b4c4.js integrity="sha256-bcmbEbZRO4oZEFerKyId7dw2OO+4na2FsUVAw3sitMQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/Visual-Computing/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><a href=/Visual-Computing/docs/shortcodes/buttons/>Buttons</a></li><li><a href=/Visual-Computing/docs/shortcodes/columns/>Columns</a></li><li><a href=/Visual-Computing/docs/shortcodes/details/>Details</a></li><li><a href=/Visual-Computing/docs/shortcodes/expand/>Expand</a></li><li><a href=/Visual-Computing/docs/shortcodes/hints/>Hints</a></li><li><a href=/Visual-Computing/docs/shortcodes/katex/>Katex</a></li><li><a href=/Visual-Computing/docs/shortcodes/mermaid/>Mermaid</a></li><li><input type=checkbox id=section-ec67a64aba70b9df3d2a9acd6c92e3bc class=toggle>
+<label for=section-ec67a64aba70b9df3d2a9acd6c92e3bc class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/p5/>P5</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/p5/div/>Div</a></li><li><a href=/Visual-Computing/docs/shortcodes/p5/iframe/>Iframe</a></li></ul></li><li><a href=/Visual-Computing/docs/shortcodes/tabs/>Tabs</a></li><li><input type=checkbox id=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class=toggle checked>
+<label for=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/talleres/>Talleres</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/talleres/3D-brush/ class=active>3 D Brush</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/rasterization/>Rasterization</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/watercolor/>Watercolor</a></li></ul></li></ul></li></ul><ul><li><a href=/Visual-Computing/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/Visual-Computing/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>3 D Brush</strong>
+<label for=toc-control><img src=/Visual-Computing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#resultados>Resultados</a></li><li><a href=#conclusiones>Conclusiones</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=3d-brush>3D Brush
+<a class=anchor href=#3d-brush>#</a></h1><h2 id=introducción>Introducción
+<a class=anchor href=#introducci%c3%b3n>#</a></h2><h2 id=resultados>Resultados
+<a class=anchor href=#resultados>#</a></h2><iframe frameborder=0 style=width:700px;height:600px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script type=module src=/Visual-Computing/sketches/index.js></script>
+            <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
+             <script src=https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.js></script> 
+            
+            
+            
+            <button id='controlId' style='float: right'>Wiimote</button>
+            <br>
+            <br>
+            <button id='controlId' style='float: right' onclick='myfunction()'>Home</button>
+            
+            <br>
+            <script>
+              var info;
+              var accelero;
+              
+  
+// Goal in the 3d Brush is double, to implement:
+// 1. a gesture parser to deal with depth, i.e.,
+// replace the depth slider with something really
+// meaningful. You may use a 3d sensor hardware
+// such as: https://en.wikipedia.org/wiki/Leap_Motion
+// or machine learning software to parse hand (or
+// body) gestures from a (video) / image, such as:
+// https://ml5js.org/
+// 2. other brushes to stylize the 3d brush, taking
+// into account its shape and alpha channel, gesture
+// speed, etc.
+
+// Brush WiiMote
+let control;
+
+// Brush controls
+
+let color;
+let depth;
+let brush;
+
+let wiimoteX = 300;
+let wiimoteY = 225;
+
+let easycam;
+let state;
+
+let escorzo;
+let points;
+let record;
+let rotate;
+let accelerometro;
+
+function resetPosition(){
+  state = {
+    distance: 250,           // scalar
+    center: [0, 0, 0],       // vector
+    rotation: [0, 0, 0, 1],  // quaternion
+  };
+  easycam.state_reset = state;   // state to use on reset (double-click/tap)
+  easycam.setState(state, 500); // now animate to that state
+  escorzo = true;
+  perspective();
+}
+
+function setup() {
+  
+  createCanvas(600, 450, WEBGL);
+  // easycam stuff
+  let state = {
+    distance: 250,           // scalar
+    center: [0, 0, 0],       // vector
+    rotation: [0, 0, 0, 1],  // quaternion
+  };
+  easycam = createEasyCam();
+  easycam.state_reset = state;   // state to use on reset (double-click/tap)
+  easycam.setState(state, 2000); // now animate to that state
+  escorzo = true;
+  perspective();
+
+  // brush stuff
+  points = [];
+  depth = createSlider(0, 1, 0.01, 0.01);
+  depth.id('slider');
+  depth.value(0.01);
+  depth.position(10, 10);
+  depth.style('width', '580px');
+  // slider
+  depth.hide();
+ 
+
+  color = '#ffa500';
+  
+  // select initial brush
+  brush = sphereBrush;
+  brush = triangleBrush;
+}
+
+function draw() {
+  captureWiiMote();
+  update();
+  background('#343a40');
+  push();
+  strokeWeight(1.5);
+  stroke('white');
+  grid({ dotted: false });
+  pop();
+  axes();
+  for (const point of points) {
+    push();
+    translate(point.worldPosition);
+    brush(point);
+    pop();
+  }
+}
+
+function captureWiiMote(){
+  if(info){
+  if(info.HOME === true){
+    resetPosition();
+    
+  }
+  if(info.HOME === true && info.MINUS === true){
+    points = [];
+  }
+  if(info.ONE === true){
+    record = !record;
+    //led(1);
+  }
+  if(info.MINUS === true && info.PLUS === true){
+    accelerometro = !accelerometro;
+  }
+  /*if(info.TWO === true){
+    rotate = !rotate;
+  }*/
+  if(record){
+  
+    if(info.DPAD_RIGHT === true){
+       wiimoteX += 1;
+      }
+      if(info.DPAD_LEFT === true){
+        wiimoteX -= 1;
+      }
+      if(info.DPAD_UP === true){
+        wiimoteY -= 1;
+      }
+      if(info.DPAD_DOWN === true){
+        wiimoteY += 1;
+      }
+      if(info.B === true && info.PLUS === true){
+        var valor =  parseFloat(document.getElementById('slider').value);
+        document.getElementById(&#34;slider&#34;).value = valor - 0.01;
+      }
+      if(info.B === true && info.MINUS === true){
+        var valor =  parseFloat(document.getElementById('slider').value);
+        document.getElementById(&#34;slider&#34;).value = valor + 0.01;
+      }
+      let dx = abs(wiimoteX);
+      let dy = abs(wiimoteY);
+      speed = constrain((dx + dy) / (2 * (width - height)), 0, 1);
+
+        points.push({
+          worldPosition: treeLocation([wiimoteX, wiimoteY, depth.value()], { from: 'SCREEN', to: 'WORLD' }),
+          color: '#ffa500',
+          speed: speed
+        });   
+    }
+    if(info.A === true){
+  
+    if(info.DPAD_RIGHT === true){
+       easycam.rotateY(0.01);
+      }
+      if(info.DPAD_LEFT === true){
+        easycam.rotateY(-0.01);
+      }
+      if(info.DPAD_UP === true){
+        easycam.rotateX(0.01);
+        
+      }
+      if(info.DPAD_DOWN === true){
+        easycam.rotateX(-0.01);
+      }
+      if(info.MINUS === true){
+        easycam.zoom(+1);
+      }
+      if(info.PLUS === true){
+        easycam.zoom(-1);
+      }
+      }
+    
+    }
+
+    if(accelerometro){
+      console.log(accelero);
+      easycam.rotateY(accelero.x);
+      easycam.rotateX(accelero.y);
+      //easycam.zoom(accelero.z);
+      console.log(&#34;activado&#34;);
+    }
+}
+
+
+function update() {
+  let dx = abs(mouseX);
+  let dy = abs(mouseY);
+  speed = constrain((dx + dy) / (2 * (width - height)), 0, 1);
+  if (record) {
+    points.push({
+      worldPosition: treeLocation([mouseX, mouseY, depth.value()], { from: 'SCREEN', to: 'WORLD' }),
+      color: '#ffa500',
+      speed: speed
+    });
+  }
+}
+
+function sphereBrush(point) {
+  push();
+  noStroke();
+  // TODO parameterize sphere radius and / or
+  // alpha channel according to gesture speed
+  fill(point.color);
+  sphere(1);
+  pop();
+}
+
+function triangleBrush(point) {
+  push();
+  noStroke();
+  // TODO parameterize sphere radius and / or
+  // alpha channel according to gesture speed
+  fill(point.color);
+  triangle(1);
+  pop();
+}
+
+function keyPressed() {
+  if (key === 'r') {
+    record = !record;
+  }
+  if (key === 'p') {
+    escorzo = !escorzo;
+    escorzo ? perspective() : ortho();
+  }
+  if (key == 'c') {
+    points = [];
+  }
+}
+
+function mouseWheel(event) {
+  //comment to enable page scrolling
+  return false;
+}
+
+
+
+
+              function myfunction() {
+                resetPosition();
+              }
+
+            </script>
+            
+          </head>
+          <body style='background-color:#343a40;'>
+          </body>
+        </html>
+      "></iframe><h2 id=conclusiones>Conclusiones
+<a class=anchor href=#conclusiones>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/aca419f119e1214f31e87852630229192452feb1 title="Last modified by Cesar David Pineda Osorio | May 26, 2022" target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
+<span>May 26, 2022</span></a></div></div><script>(function(){function e(n){const e=window.getSelection(),t=document.createRange();t.selectNodeContents(n),e.removeAllRanges(),e.addRange(t)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#3d-brush>3D Brush</a><ul><li><a href=#introducción>Introducción</a></li><li><a href=#resultados>Resultados</a></li><li><a href=#conclusiones>Conclusiones</a></li></ul></li></ul></nav></div></aside></main></body></html>
