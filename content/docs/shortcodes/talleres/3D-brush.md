@@ -2,7 +2,31 @@
 
 ## Introducción
 
-## Resultados
+En esta implementación de el Pincel en 3D (3D Brush), se utiliza un control remoto de un Nintendo Wii (Wiimote) para el control del dibujo y movimiento del plano. Esto se suma al uso de TreeGL y EasyCAM.
+
+## El Control Remoto
+
+![3dbrush1](https://i.blogs.es/8ba955/fundawii/450_1000.jpg)
+
+El Wiimote es el control remoto de la Consola Nintendo Wii (2006 - 2017); utiliza tecnología Bluetooth para la conexión con el Wii y con otros dispositivos. Está construido sobre el SOC Broadcom BCM2042. A pesar de utilizar las interfaces estandar USB HID no utiliza los descriptores ni tipos de datos estandar por lo que son necesarios drivers o programas especializados para la conexión.
+
+### La conexión; Wiimote for the Web
+
+En esta oportunidad se ha optado por utilizar la librería WiiMote for the Web, que se basa en la tecnología WebHID. WebHID aún se considera una tecnología de caracter experimental por lo que es necesario habilitarla para el uso en los navegadores soportados (basados en Chromium).
+
+La librería combina el uso de WebHID y JavaScript para generar una interface que permite hacer uso de prácticamente todas las funcionalidades del WiiMote (bluetooth, botones, LEDs, vibración, infrarrojo, etc.).
+
+### Integración
+
+La librería nos entregará un arreglo con todos los botones y en caso de que alguno de ellos sea oprimido el elemento cambiará del valor "false" al valor "true". Adicionalmente, también nos entregará los datos del acelerómetro integrado del control y funcionalidades para activar o desactivar los LED y el vibrador interno.
+
+Es de resaltar que el Wiimote es un senson de infrarrojo en si mismo y la barra inicialmente incluida en los Wii únicamente cumplia la funcionalidad de contar con infrarrojos para que el control la viera.
+
+![3dbrush2](https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Nintendo_Wii_Sensor_Bar.jpg/640px-Nintendo_Wii_Sensor_Bar.jpg)
+
+El principal reto en la implementación fue la integración de la librería con la interface de p5js y la normalización de los valores de algunos inputs para obtener la funcionalidad deseada.
+
+## Resultados / Implementación.
 
 
 {{< p5-global-iframe sketch="/sketches/trees/3dbrush.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" lib2="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.js" width="700" height="600" >}}
@@ -27,6 +51,7 @@ let control;
 let color;
 let depth;
 let brush;
+let selectBrush;
 
 let wiimoteX = 300;
 let wiimoteY = 225;
@@ -76,16 +101,13 @@ function setup() {
   depth.style('width', '580px');
   // slider
   depth.hide();
- 
-
   color = '#ffa500';
   
-  // select initial brush
-  brush = sphereBrush;
-  brush = triangleBrush;
+  
 }
 
 function draw() {
+  if(selectBrush){brush = cubeBrush;}else{brush = sphereBrush;}
   captureWiiMote();
   update();
   background('#343a40');
@@ -119,9 +141,9 @@ function captureWiiMote(){
   if(info.MINUS === true && info.PLUS === true){
     accelerometro = !accelerometro;
   }
-  /*if(info.TWO === true){
-    rotate = !rotate;
-  }*/
+  if(info.TWO === true){
+    selectBrush = !selectBrush;
+  }
   if(record){
   
     if(info.DPAD_RIGHT === true){
@@ -212,13 +234,13 @@ function sphereBrush(point) {
   pop();
 }
 
-function triangleBrush(point) {
+function cubeBrush(point) {
   push();
   noStroke();
   // TODO parameterize sphere radius and / or
   // alpha channel according to gesture speed
   fill(point.color);
-  triangle(1);
+  box(1);
   pop();
 }
 
@@ -243,5 +265,21 @@ function mouseWheel(event) {
 
 {{< /p5-global-iframe >}}
 
-## Conclusiones
+## Apreciaciones y Conclusiones
 
+Lo más interesante fue ver la funcionalidad que aún presenta un dispositivo tan antiguo para los estandares de hoy como lo es el Wiimote; apesar de tener más de 15 años en el mercado, cuenta con funcionalidades bastante especiales que en su momento le hicieron un dispositivo único y posicionaron a la Wii consola más vendida en la historia de Nintendo.
+
+Muy importantes tambien son las funcionalidades que aún puede tener un dispositivo como este; el sensor de infrarrojos abre todo tipo de posibilidades para la interacción con espacios en 3D. Esta es una funcionalidad que podría ser implementada en una nueva iteración.
+
+Es importante mencionar que la librería p5.EasyCam contó con una gran facilidad de utilización y fue de facil implementación. A pesar de eso, mostró lo poderosa que puede llegar a ser en el manejo de espacios 3D al contar con funcionalidades como sobreo e iluminación avanzada.
+
+Finalmente, se quiere mencionar el uso de una tecnología experimental como lo es WebHID; cuando esta tecnología logre ser adoptada de manera más amplia se abrirá la puerta a que los navegadores puedan acceder directamente a dispositivos de hardware (contoles, simuladores, dispositivos médicos, etc) sin la necesidad de drivers o modificaciones por parte de los usuarios. Desafortunadamente la única implementación actual de esta tecnología se encuentra en los navegadores basados en Chromium.
+
+## Referencias y consulta avanzada.
+
+- [Kevin Picchi, Wiimote for the Web](https://github.com/PicchiKevin/wiimote-webhid)
+- [W3C Community Group Draft Report - WebHID API (Marzo de 2022)](https://wicg.github.io/webhid/)
+- [p5.js - Referencia](https://p5js.org/es/reference/)
+- [James William Dunn - Referencia p5.EasyCam](https://github.com/freshfork/p5.EasyCam)
+- [Hugo References](https://gohugo.io/functions/)
+- [Wiimote - Wikipedia, la enciclopedia libre](https://es.wikipedia.org/wiki/Wiimote)
