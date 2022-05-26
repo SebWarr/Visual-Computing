@@ -22,9 +22,12 @@
             {{ if isset .Params "lib4" }} <script src={{ $lib4 }}></script> {{ end }}
             {{ if isset .Params "lib5" }} <script src={{ $lib5 }}></script> {{ end }}
             <button id='controlId' style='float: right'>Wiimote</button>
+            <button id='led' style='float: right' hidden></button>
+            <button id='led1' style='float: right' hidden></button>
+            <button id='led2' style='float: right' hidden></button>
             <br>
             <br>
-            <button id='controlId' style='float: right' onclick='myfunction()'>Home</button>
+            <button id='controlIdHome' style='float: right' onclick='myfunction()'>Home</button>
             
             <br>
             <script>

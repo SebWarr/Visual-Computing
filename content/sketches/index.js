@@ -43,6 +43,9 @@ requestButton.addEventListener("click", async () => {
 });
 
 function initButtons() {
+  document.getElementById("led").addEventListener("click", () => wiimote.toggleLed(0))
+  document.getElementById("led1").addEventListener("click", () => wiimote.toggleLed(1))
+  document.getElementById("led2").addEventListener("click", () => wiimote.toggleLed(2))
   /*setButton( "rumble",
     () => wiimote.toggleRumble()
   )
@@ -72,9 +75,8 @@ function initButtons() {
   )
 
   // LED buttons
-  document.getElementById("led1").addEventListener("click", () => wiimote.toggleLed(0))
-  document.getElementById("led2").addEventListener("click", () => wiimote.toggleLed(1))
-  document.getElementById("led3").addEventListener("click", () => wiimote.toggleLed(2))
+  document.getElementById("led").addEventListener("click", () => wiimote.toggleLed(0))
+
   document.getElementById("led4").addEventListener("click", () => wiimote.toggleLed(3))*/
 }
 

@@ -136,13 +136,16 @@ function captureWiiMote(){
   }
   if(info.ONE === true){
     record = !record;
+    led.click();
     //led(1);
   }
   if(info.MINUS === true && info.PLUS === true){
     accelerometro = !accelerometro;
+    led2.click();
   }
   if(info.TWO === true){
     selectBrush = !selectBrush;
+    led1.click();
   }
   if(record){
   
@@ -177,7 +180,7 @@ function captureWiiMote(){
         });   
     }
     if(info.A === true){
-  
+    led1.click();
     if(info.DPAD_RIGHT === true){
        easycam.rotateY(0.01);
       }
