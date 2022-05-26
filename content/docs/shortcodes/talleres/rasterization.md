@@ -351,6 +351,7 @@ function barycentricCoord(p, redPoint, greenPoint, bluePoint) {
 {{< /p5-global-iframe >}}
 
 ## Conclusiones
+ - La calidad de la rasterización se puede mejorar utilizando antialiasing, dado que este genera bordes "suaves". La precisión de subpíxeles es un método que tiene en cuenta las posiciones en una escala más fina que la cuadrícula de píxeles y puede producir resultados diferentes incluso si los puntos finales de una primitiva caen en las mismas coordenadas de píxeles, produciendo animaciones de movimiento más suaves. El hardware simple o más antiguo, como PlayStation 1, carecía de precisión de subpíxeles en la rasterización 3D.[7]
 
 
 ## Referencias
