@@ -4,34 +4,6 @@
 
 {{< details title="uv.js" open=false >}}
 ```js
-  let uvShader;
-
-function preload() {
-  // Define geometry directly in clip space (i.e., matrices: Tree.NONE).
-  // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2).
-  // see: https://github.com/VisualComputing/p5.treegl#handling
-  uvShader = readShader('/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 });
-}
-
-function setup() {
-  // shaders require WEBGL mode to work
-  createCanvas(300, 300, WEBGL);
-  noStroke();
-  // see: https://p5js.org/reference/#/p5/shader
-  shader(uvShader);
-  // https://p5js.org/reference/#/p5/textureMode
-  // best and simplest is to just always used NORMAL
-  textureMode(NORMAL);
-}
-
-function draw() {
-  background(0);
-  // clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
-  // https://p5js.org/reference/#/p5/quad
-  // It's worth noting (not mentioned in the api docs) that the quad
-  // command also adds the texture coordinates to each of its vertices.
-  quad(-1, -1, 1, -1, 1, 1, -1, 1);
-}
 ```
 {{< /details >}}
 
@@ -94,9 +66,9 @@ let img;
 let grey_scale;
 
 function preload() {
-  lumaShader = readShader('/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
   // image source: https://i.pinimg.com/736x/09/83/1f/09831fcddd633566d10508b171b69441--wolf-wallpaper-animal-wallpaper.jpg
-  img = loadImage('/sketches/shaders/wolf.jpg');
+  img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
 }
 
 function setup() {
@@ -149,8 +121,8 @@ let img;
 let grey_scale;
 
 function preload() {
-  lumaShader = readShader('/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
-  img = loadImage('/sketches/shaders/wolf.jpg');
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
+  img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
 }
 
 function setup() {

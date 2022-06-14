@@ -13,6 +13,10 @@
         <html>
           <head>
             <script type=module src=/Visual-Computing/sketches/index.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script>             
+            <script src=/Visual-Computing/sketches/shaders/uv.js></script>
             <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/{{ default $defver (.Get `ver`) }}/p5.min.js></script>
             <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/{{ default $defver (.Get `ver`) }}/addons/p5.sound.min.js></script>
@@ -21,13 +25,13 @@
             {{ if isset .Params "lib3" }} <script src={{ $lib3 }}></script> {{ end }}
             {{ if isset .Params "lib4" }} <script src={{ $lib4 }}></script> {{ end }}
             {{ if isset .Params "lib5" }} <script src={{ $lib5 }}></script> {{ end }}
-            <button id='controlId' style='float: right'>Wiimote</button>
+            <button id='controlId' style='float: right' hidden>Wiimote</button>
             <button id='led' style='float: right' hidden></button>
             <button id='led1' style='float: right' hidden></button>
             <button id='led2' style='float: right' hidden></button>
             <br>
             <br>
-            <button id='controlIdHome' style='float: right' onclick='myfunction()'>Home</button>
+            <button id='controlIdHome' style='float: right' onclick='myfunction()' hidden>Home</button>
             
             <br>
             <script>
