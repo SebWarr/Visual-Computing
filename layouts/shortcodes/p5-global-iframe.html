@@ -7,7 +7,7 @@
 
 <iframe frameBorder="0"
   id="{{ .Get `id` }}"
-  style="width:{{ default "800" (.Get `width`) }}px; height:{{ default "600" (.Get `height`) }}px"
+  style='width:{{ default 800 (.Get `width`) }}px; height:{{ default 600 (.Get `height`) }}px'
   srcdoc="
         <!DOCTYPE html>
         <html>
