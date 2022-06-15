@@ -167,3 +167,195 @@ function draw() {
 }
 
 {{< /p5-global-iframe >}}
+
+## Image processing
+
+{{< details title="mask.frag" open=false >}}
+```frag
+precision mediump float;
+
+uniform sampler2D texture;
+uniform vec2 texOffset;
+// holds the 3x3 kernel
+uniform float mask[9];
+
+// we need our interpolated tex coord
+varying vec2 texcoords2;
+
+void main() {
+  // 1. Use offset to move along texture space.
+  // In this case to find the texcoords of the texel neighbours.
+  vec2 tc0 = texcoords2 + vec2(-texOffset.s, -texOffset.t);
+  vec2 tc1 = texcoords2 + vec2(         0.0, -texOffset.t);
+  vec2 tc2 = texcoords2 + vec2(+texOffset.s, -texOffset.t);
+  vec2 tc3 = texcoords2 + vec2(-texOffset.s,          0.0);
+  // origin (current fragment texcoords)
+  vec2 tc4 = texcoords2 + vec2(         0.0,          0.0);
+  vec2 tc5 = texcoords2 + vec2(+texOffset.s,          0.0);
+  vec2 tc6 = texcoords2 + vec2(-texOffset.s, +texOffset.t);
+  vec2 tc7 = texcoords2 + vec2(         0.0, +texOffset.t);
+  vec2 tc8 = texcoords2 + vec2(+texOffset.s, +texOffset.t);
+
+  // 2. Sample texel neighbours within the rgba array
+  vec4 rgba[9];
+  rgba[0] = texture2D(texture, tc0);
+  rgba[1] = texture2D(texture, tc1);
+  rgba[2] = texture2D(texture, tc2);
+  rgba[3] = texture2D(texture, tc3);
+  rgba[4] = texture2D(texture, tc4);
+  rgba[5] = texture2D(texture, tc5);
+  rgba[6] = texture2D(texture, tc6);
+  rgba[7] = texture2D(texture, tc7);
+  rgba[8] = texture2D(texture, tc8);
+
+  // 3. Apply convolution kernel
+  vec4 convolution;
+  for (int i = 0; i < 9; i++) {
+    convolution += rgba[i]*mask[i];
+  }
+
+  // 4. Set color from convolution
+  gl_FragColor = vec4(convolution.rgb, 1.0); 
+}
+```
+{{< /details >}}
+
+{{< p5-global-iframe id="breath" width="400" height="400">}}
+precision mediump float;
+
+uniform sampler2D texture;
+uniform vec2 texOffset;
+// holds the 3x3 kernel
+uniform float mask[9];
+
+// we need our interpolated tex coord
+varying vec2 texcoords2;
+
+void main() {
+  // 1. Use offset to move along texture space.
+  // In this case to find the texcoords of the texel neighbours.
+  vec2 tc0 = texcoords2 + vec2(-texOffset.s, -texOffset.t);
+  vec2 tc1 = texcoords2 + vec2(         0.0, -texOffset.t);
+  vec2 tc2 = texcoords2 + vec2(+texOffset.s, -texOffset.t);
+  vec2 tc3 = texcoords2 + vec2(-texOffset.s,          0.0);
+  // origin (current fragment texcoords)
+  vec2 tc4 = texcoords2 + vec2(         0.0,          0.0);
+  vec2 tc5 = texcoords2 + vec2(+texOffset.s,          0.0);
+  vec2 tc6 = texcoords2 + vec2(-texOffset.s, +texOffset.t);
+  vec2 tc7 = texcoords2 + vec2(         0.0, +texOffset.t);
+  vec2 tc8 = texcoords2 + vec2(+texOffset.s, +texOffset.t);
+
+  // 2. Sample texel neighbours within the rgba array
+  vec4 rgba[9];
+  rgba[0] = texture2D(texture, tc0);
+  rgba[1] = texture2D(texture, tc1);
+  rgba[2] = texture2D(texture, tc2);
+  rgba[3] = texture2D(texture, tc3);
+  rgba[4] = texture2D(texture, tc4);
+  rgba[5] = texture2D(texture, tc5);
+  rgba[6] = texture2D(texture, tc6);
+  rgba[7] = texture2D(texture, tc7);
+  rgba[8] = texture2D(texture, tc8);
+
+  // 3. Apply convolution kernel
+  vec4 convolution;
+  for (int i = 0; i < 9; i++) {
+    convolution += rgba[i]*mask[i];
+  }
+
+  // 4. Set color from convolution
+  gl_FragColor = vec4(convolution.rgb, 1.0); 
+}
+{{< /p5-global-iframe >}}
+
+## Procedural texturing
+
+{{< details title="truchet_tiles.js" open=false >}}
+```js
+let pg;
+let truchetShader;
+
+function preload() {
+  // shader adapted from here: https://thebookofshaders.com/09/
+  truchetShader = readShader('/Visual-Computing/sketches/shaders/truchet.frag', { matrices: Tree.NONE, varyings: Tree.NONE });
+}
+
+function setup() {
+  createCanvas(400, 400, WEBGL);
+  // create frame buffer object to render the procedural texture
+  pg = createGraphics(400, 400, WEBGL);
+  textureMode(NORMAL);
+  noStroke();
+  pg.noStroke();
+  pg.textureMode(NORMAL);
+  // use truchetShader to render onto pg
+  pg.shader(truchetShader);
+  // emitResolution, see:
+  // https://github.com/VisualComputing/p5.treegl#macros
+  pg.emitResolution(truchetShader);
+  // https://p5js.org/reference/#/p5.Shader/setUniform
+  truchetShader.setUniform('u_zoom', 3);
+  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
+  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+  // set pg as texture
+  texture(pg);
+}
+
+function draw() {
+  background(33);
+  orbitControl();
+  cylinder(100, 200);
+}
+
+function mouseMoved() {
+  // https://p5js.org/reference/#/p5.Shader/setUniform
+  truchetShader.setUniform('u_zoom', int(map(mouseX, 0, width, 1, 30)));
+  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
+  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+}
+```
+{{< /details >}}
+
+{{< p5-global-iframe id="breath" width="400" height="400">}}
+let pg;
+let truchetShader;
+
+function preload() {
+  // shader adapted from here: https://thebookofshaders.com/09/
+  truchetShader = readShader('/Visual-Computing/sketches/shaders/truchet.frag', { matrices: Tree.NONE, varyings: Tree.NONE });
+}
+
+function setup() {
+  createCanvas(400, 400, WEBGL);
+  // create frame buffer object to render the procedural texture
+  pg = createGraphics(400, 400, WEBGL);
+  textureMode(NORMAL);
+  noStroke();
+  pg.noStroke();
+  pg.textureMode(NORMAL);
+  // use truchetShader to render onto pg
+  pg.shader(truchetShader);
+  // emitResolution, see:
+  // https://github.com/VisualComputing/p5.treegl#macros
+  pg.emitResolution(truchetShader);
+  // https://p5js.org/reference/#/p5.Shader/setUniform
+  truchetShader.setUniform('u_zoom', 3);
+  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
+  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+  // set pg as texture
+  texture(pg);
+}
+
+function draw() {
+  background(33);
+  orbitControl();
+  cylinder(100, 200);
+}
+
+function mouseMoved() {
+  // https://p5js.org/reference/#/p5.Shader/setUniform
+  truchetShader.setUniform('u_zoom', int(map(mouseX, 0, width, 1, 30)));
+  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
+  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+}
+{{< /p5-global-iframe >}}
