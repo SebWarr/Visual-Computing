@@ -25,4 +25,6 @@ function draw() {
   // It's worth noting (not mentioned in the api docs) that the quad
   // command also adds the texture coordinates to each of its vertices.
   quad(-1, -1, 1, -1, 1, 1, -1, 1);
+  ellipse(0, 2, 0);
+  triangle(2, 2, -2, -2, 3, 3);
 }
