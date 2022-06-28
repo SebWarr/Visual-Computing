@@ -95,6 +95,8 @@ function draw() {
 let lumaShader;
 let img;
 let grey_scale;
+let hSlider, sSlider, bSlider;
+let _hSlider, _sSlider, _lSlider;
 
 function preload() {
   lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
@@ -112,11 +114,64 @@ function setup() {
   grey_scale.style('color', 'white');
   grey_scale.input(() => lumaShader.setUniform('grey_scale', grey_scale.checked()));
   lumaShader.setUniform('texture', img);
+
+
+    // HSB
+  hSlider = createSlider(0, 360, 0);
+  hSlider.position(20, 245)
+  sSlider = createSlider(0, 100, 80);
+  sSlider.position(20, 275)
+  bSlider = createSlider(0, 100, 80);
+  bSlider.position(20, 310)
+
+  // HSL
+  _hSlider = createSlider(0, 360, 0);
+  _hSlider.position(20, 470)
+  _sSlider = createSlider(0, 100, 80);
+  _sSlider.position(20, 500)
+  _lSlider = createSlider(0, 50, 40);
+  _lSlider.position(20, 530)
 }
 
 function draw() {
   background(0);
   quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
+
+
+  /************** HSB **************/
+  push();
+  colorMode(HSB, 360, 100, 100);
+  let h = hSlider.value();
+  let s = sSlider.value();
+  let b = bSlider.value();
+
+  fill(h, s, b);
+  rect(0, 225, width, 200);
+
+  fill(0);
+  text(`hue ${h}`, hSlider.x * 2 + hSlider.width, 260);
+  text(`saturation ${s}`, sSlider.x * 2 + sSlider.width, 290);
+  text(`brightness ${b}`, bSlider.x * 2 + bSlider.width, 320);
+  text(`HSB`, 360, 410);
+  pop();
+
+  /************** HSL **************/
+  push();
+  colorMode(HSL, 360, 100, 50);
+  let _h = _hSlider.value();
+  let _s = _sSlider.value();
+  let _l = _lSlider.value();
+
+  fill(_h, _s, _l);
+  rect(0, 450, width, 200);
+
+  fill(0);
+  text(`hue ${_h}`, _hSlider.x * 2 + _hSlider.width, 485);
+  text(`saturation ${_s}`, _sSlider.x * 2 + _sSlider.width, 515);
+  text(`lightness ${_l}`, _lSlider.x * 2 + _lSlider.width, 545);
+  text(`HSL`, 360, 635);
+  pop();
+
 }
 ```
 {{< /details >}}
@@ -150,9 +205,12 @@ void main() {
 let lumaShader;
 let img;
 let grey_scale;
+let hSlider, sSlider, bSlider;
+let _hSlider, _sSlider, _lSlider;
 
 function preload() {
   lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
+  // image source: https://i.pinimg.com/736x/09/83/1f/09831fcddd633566d10508b171b69441--wolf-wallpaper-animal-wallpaper.jpg
   img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
 }
 
@@ -161,16 +219,69 @@ function setup() {
   noStroke();
   textureMode(NORMAL);
   shader(lumaShader);
-  grey_scale = createCheckbox('luma', false);
+  grey_scale = createCheckbox('Luma', false);
   grey_scale.position(10, 10);
   grey_scale.style('color', 'white');
   grey_scale.input(() => lumaShader.setUniform('grey_scale', grey_scale.checked()));
   lumaShader.setUniform('texture', img);
+
+
+    // HSB
+  hSlider = createSlider(0, 360, 0);
+  hSlider.position(20, 135)
+  sSlider = createSlider(0, 100, 80);
+  sSlider.position(20, 165)
+  bSlider = createSlider(0, 100, 80);
+  bSlider.position(20, 200)
+
+  // HSL
+  _hSlider = createSlider(0, 360, 0);
+  _hSlider.position(20, 420)
+  _sSlider = createSlider(0, 100, 80);
+  _sSlider.position(20, 450)
+  _lSlider = createSlider(0, 50, 40);
+  _lSlider.position(20, 480)
 }
 
 function draw() {
+
+  /************** HSB **************/
+  push();
+  colorMode(HSB, 360, 100, 100);
+  let h = hSlider.value();
+  let s = sSlider.value();
+  let b = bSlider.value();
+
+  fill(h, s, b);
+  //rect(0, 225, width, 200);
+
+  fill(0);
+  text(`hue ${h}`, hSlider.x * 2 + hSlider.width, 260);
+  text(`saturation ${s}`, sSlider.x * 2 + sSlider.width, 290);
+  text(`brightness ${b}`, bSlider.x * 2 + bSlider.width, 320);
+  text(`HSB`, 360, 410);
+  pop();
+
+  /************** HSL **************/
+  push();
+  colorMode(HSL, 360, 100, 50);
+  let _h = _hSlider.value();
+  let _s = _sSlider.value();
+  let _l = _lSlider.value();
+
+  fill(_h, _s, _l);
+  //rect(0, 450, width, 200);
+
+  fill(0);
+  text(`hue ${_h}`, _hSlider.x * 2 + _hSlider.width, 485);
+  text(`saturation ${_s}`, _sSlider.x * 2 + _sSlider.width, 515);
+  text(`lightness ${_l}`, _lSlider.x * 2 + _lSlider.width, 545);
+  text(`HSL`, 360, 635);
+  pop();
+
   background(0);
   quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
+
 }
 
 {{< /p5-global-iframe >}}
