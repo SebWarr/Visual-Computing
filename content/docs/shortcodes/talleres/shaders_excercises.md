@@ -260,102 +260,240 @@ function draw() {
 
 ## Image processing
 
-{{< details title="mask.frag" open=false >}}
+{{< details title="lumaImageP.frag" open=false >}}
 ```frag
 precision mediump float;
 
+uniform bool grey_scale;
 uniform sampler2D texture;
-uniform vec2 texOffset;
-// holds the 3x3 kernel
-uniform float mask[9];
+uniform vec2 mouse_position;
+uniform float filter_selected;
+uniform vec2 u_resolution;
 
-// we need our interpolated tex coord
 varying vec2 texcoords2;
 
-void main() {
-  // 1. Use offset to move along texture space.
-  // In this case to find the texcoords of the texel neighbours.
-  vec2 tc0 = texcoords2 + vec2(-texOffset.s, -texOffset.t);
-  vec2 tc1 = texcoords2 + vec2(         0.0, -texOffset.t);
-  vec2 tc2 = texcoords2 + vec2(+texOffset.s, -texOffset.t);
-  vec2 tc3 = texcoords2 + vec2(-texOffset.s,          0.0);
-  // origin (current fragment texcoords)
-  vec2 tc4 = texcoords2 + vec2(         0.0,          0.0);
-  vec2 tc5 = texcoords2 + vec2(+texOffset.s,          0.0);
-  vec2 tc6 = texcoords2 + vec2(-texOffset.s, +texOffset.t);
-  vec2 tc7 = texcoords2 + vec2(         0.0, +texOffset.t);
-  vec2 tc8 = texcoords2 + vec2(+texOffset.s, +texOffset.t);
+vec3 lumaFunction() {
 
-  // 2. Sample texel neighbours within the rgba array
-  vec4 rgba[9];
-  rgba[0] = texture2D(texture, tc0);
-  rgba[1] = texture2D(texture, tc1);
-  rgba[2] = texture2D(texture, tc2);
-  rgba[3] = texture2D(texture, tc3);
-  rgba[4] = texture2D(texture, tc4);
-  rgba[5] = texture2D(texture, tc5);
-  rgba[6] = texture2D(texture, tc6);
-  rgba[7] = texture2D(texture, tc7);
-  rgba[8] = texture2D(texture, tc8);
+  vec4 color = texture2D(texture, texcoords2);
+  
+  vec2 st = gl_FragCoord.xy; 
+  vec2 mouse = vec2(mouse_position.x, 500.0 - mouse_position.y);
 
-  // 3. Apply convolution kernel
-  vec4 convolution;
-  for (int i = 0; i < 9; i++) {
-    convolution += rgba[i]*mask[i];
+  if(distance(st,mouse)< 150.0){
+    vec4 color = texture2D(texture, vec2((1.0- mouse.x/700.0) + (texcoords2.x - mouse.x/700.0)*0.3,(1.0- mouse.y/500.0) + (texcoords2.y - mouse.y/500.0)*0.3));
+    float r = color.r;
+    float g = color.g;
+    float b = color.b;
+
+    float V;
+     
+    if (filter_selected == 1.0){
+      V = dot(color.rgb, vec3(0.5,0.5,0.3));
+    }
+
+    vec3 result = vec3(V);
+    if (filter_selected == 1.0){
+     
+    }else{
+      result.r = r;
+      result.g = g;
+      result.b = b;
+    }
+
+    
+    return result;
+
+  }else{
+
+    vec4 color = texture2D(texture, texcoords2);
+
+    float r = color.r;
+    float g = color.g;
+    float b = color.b;
+
+    return (vec3(r,g,b));
   }
 
-  // 4. Set color from convolution
-  gl_FragColor = vec4(convolution.rgb, 1.0); 
+}
+
+void main() {
+
+  gl_FragColor = vec4(lumaFunction(), 1.0);
+
 }
 ```
 {{< /details >}}
 
-{{< p5-global-iframe id="breath" width="400" height="400">}}
-precision mediump float;
+{{< details title="lumaImageP.js" open=false >}}
+```js
+let lumaShader;
+let imgage;
+let selector;
+let vid;
 
-uniform sampler2D texture;
-uniform vec2 texOffset;
-// holds the 3x3 kernel
-uniform float mask[9];
-
-// we need our interpolated tex coord
-varying vec2 texcoords2;
-
-void main() {
-  // 1. Use offset to move along texture space.
-  // In this case to find the texcoords of the texel neighbours.
-  vec2 tc0 = texcoords2 + vec2(-texOffset.s, -texOffset.t);
-  vec2 tc1 = texcoords2 + vec2(         0.0, -texOffset.t);
-  vec2 tc2 = texcoords2 + vec2(+texOffset.s, -texOffset.t);
-  vec2 tc3 = texcoords2 + vec2(-texOffset.s,          0.0);
-  // origin (current fragment texcoords)
-  vec2 tc4 = texcoords2 + vec2(         0.0,          0.0);
-  vec2 tc5 = texcoords2 + vec2(+texOffset.s,          0.0);
-  vec2 tc6 = texcoords2 + vec2(-texOffset.s, +texOffset.t);
-  vec2 tc7 = texcoords2 + vec2(         0.0, +texOffset.t);
-  vec2 tc8 = texcoords2 + vec2(+texOffset.s, +texOffset.t);
-
-  // 2. Sample texel neighbours within the rgba array
-  vec4 rgba[9];
-  rgba[0] = texture2D(texture, tc0);
-  rgba[1] = texture2D(texture, tc1);
-  rgba[2] = texture2D(texture, tc2);
-  rgba[3] = texture2D(texture, tc3);
-  rgba[4] = texture2D(texture, tc4);
-  rgba[5] = texture2D(texture, tc5);
-  rgba[6] = texture2D(texture, tc6);
-  rgba[7] = texture2D(texture, tc7);
-  rgba[8] = texture2D(texture, tc8);
-
-  // 3. Apply convolution kernel
-  vec4 convolution;
-  for (int i = 0; i < 9; i++) {
-    convolution += rgba[i]*mask[i];
-  }
-
-  // 4. Set color from convolution
-  gl_FragColor = vec4(convolution.rgb, 1.0); 
+function preload() {
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/lumaImageP.frag', {matrices: Tree.NONE});
+  //Fuente: https://www.facebook.com/photo/?fbid=166623455104115&set=a.166623418437452
+  imagen = loadImage('/Visual-Computing/sketches/aulas.jpg');
+  video = createVideo("/Visual-Computing/sketches/unalbog.mp4",vidLoad);
+  video.hide();
 }
+
+function setup() {
+  
+  createCanvas(700, 500, WEBGL);
+  noStroke();
+  textureMode(NORMAL);
+  shader(lumaShader);
+  lumaShader.setUniform('texture', imagen);
+
+  selector = createCheckbox('Iniciar Video',false);
+  selector.position(600,10);
+  selector.style('color', 'white');  
+  selector.changed(SelectorEvent);
+  selector2 = createCheckbox('Luma',false);
+  selector2.position(600,30);
+  selector2.style('color', 'white');  
+  selector2.changed(SelectorEvent2);
+}
+
+function SelectorEvent(){
+  if (selector.checked()) {
+    lumaShader.setUniform('texture', video);
+    vidLoad();
+  } else {
+    lumaShader.setUniform('texture', imagen);
+  }
+}
+
+function SelectorEvent2(){
+  if (selector2.checked()) {
+    lumaShader.setUniform('filter_selected', 1);
+  }else{
+     lumaShader.setUniform('filter_selected', 0);
+  }
+}
+
+
+function vidLoad() {
+  video.loop();
+  video.speed(1);
+  video.volume(0);
+  video.hide();
+}
+
+function draw() {
+  
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+
+}
+
+function keyPressed(){
+  if(key == 'z'){
+    
+  }
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+}
+
+```
+{{< /details >}}
+
+
+{{< p5-global-iframe id="imageProcessing">}}
+
+let lumaShader;
+let imgage;
+let selector;
+let vid;
+
+function preload() {
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/lumaImageP.frag', {matrices: Tree.NONE});
+  //Fuente: https://www.facebook.com/photo/?fbid=166623455104115&set=a.166623418437452
+  imagen = loadImage('/Visual-Computing/sketches/aulas.jpg');
+  video = createVideo("/Visual-Computing/sketches/unalbog.mp4",vidLoad);
+  video.hide();
+}
+
+function setup() {
+  
+  createCanvas(700, 500, WEBGL);
+  noStroke();
+  textureMode(NORMAL);
+  shader(lumaShader);
+  lumaShader.setUniform('texture', imagen);
+
+  selector = createCheckbox('Iniciar Video',false);
+  selector.position(600,10);
+  selector.style('color', 'white');  
+  selector.changed(SelectorEvent);
+  selector2 = createCheckbox('Luma',false);
+  selector2.position(600,30);
+  selector2.style('color', 'white');  
+  selector2.changed(SelectorEvent2);
+}
+
+function SelectorEvent(){
+  if (selector.checked()) {
+    lumaShader.setUniform('texture', video);
+    vidLoad();
+  } else {
+    lumaShader.setUniform('texture', imagen);
+  }
+}
+
+function SelectorEvent2(){
+  if (selector2.checked()) {
+    lumaShader.setUniform('filter_selected', 1);
+  }else{
+     lumaShader.setUniform('filter_selected', 0);
+  }
+}
+
+
+function vidLoad() {
+  video.loop();
+  video.speed(1);
+  video.volume(0);
+  video.hide();
+}
+
+function draw() {
+  
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+
+}
+
+function keyPressed(){
+  if(key == 'z'){
+    
+  }
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+}
+
 {{< /p5-global-iframe >}}
 
 ## Procedural texturing
