@@ -1,0 +1,132 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" Image Processing # "><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content=" Image Processing # "><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/image_processing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-06-28T08:01:59-05:00"><title>Image Processing | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
+<script defer src=/Visual-Computing/en.search.min.c203b39686efaab22c47823489d48e1f4f0a816aff883836fed0aab0cb73a0fd.js integrity="sha256-wgOzlobvqrIsR4I0idSOH08KgWr/iDg2/tCqsMtzoP0=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/Visual-Computing/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><a href=/Visual-Computing/docs/shortcodes/buttons/>Buttons</a></li><li><a href=/Visual-Computing/docs/shortcodes/columns/>Columns</a></li><li><a href=/Visual-Computing/docs/shortcodes/details/>Details</a></li><li><a href=/Visual-Computing/docs/shortcodes/expand/>Expand</a></li><li><a href=/Visual-Computing/docs/shortcodes/hints/>Hints</a></li><li><a href=/Visual-Computing/docs/shortcodes/tabs/>Tabs</a></li><li><input type=checkbox id=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class=toggle checked>
+<label for=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/talleres/>Talleres</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/talleres/3D-brush/>3 D Brush</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/image_processing/ class=active>Image Processing</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/rasterization/>Rasterization</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/shaders_excercises/>Shaders Excercises</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/watercolor/>Watercolor</a></li></ul></li></ul></li></ul><ul><li><a href=/Visual-Computing/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/Visual-Computing/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Image Processing</strong>
+<label for=toc-control><img src=/Visual-Computing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#image-processing>Image Processing</a></li></ul></nav></aside></header><article class=markdown><h1 id=image-processing>Image Processing
+<a class=anchor href=#image-processing>#</a></h1><iframe frameborder=0 id=imageProcessing style=width:800px;height:600px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script type=module src=/Visual-Computing/sketches/index.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script>             
+            <script src=/Visual-Computing/sketches/shaders/uv.js></script>
+            <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+            
+            
+            
+            
+            
+            <button id='controlId' style='float: right' hidden>Wiimote</button>
+            <button id='led' style='float: right' hidden></button>
+            <button id='led1' style='float: right' hidden></button>
+            <button id='led2' style='float: right' hidden></button>
+            <br>
+            <br>
+            <button id='controlIdHome' style='float: right' onclick='myfunction()' hidden>Home</button>
+            
+            <br>
+            <script>
+              var info;
+              var accelero;
+              
+
+let lumaShader;
+let imgage;
+let selector;
+let vid;
+
+function preload() {
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/lumaImageP.frag', {matrices: Tree.NONE});
+  //Fuente: https://www.facebook.com/photo/?fbid=166623455104115&set=a.166623418437452
+  imagen = loadImage('/Visual-Computing/sketches/aulas.jpg');
+  video = createVideo(&#34;/Visual-Computing/sketches/unalbog.mp4&#34;,vidLoad);
+  video.hide();
+}
+
+function setup() {
+  
+  createCanvas(700, 500, WEBGL);
+  noStroke();
+  textureMode(NORMAL);
+  shader(lumaShader);
+  lumaShader.setUniform('texture', imagen);
+
+  selector = createCheckbox('Iniciar Video',false);
+  selector.position(600,10);
+  selector.style('color', 'white');  
+  selector.changed(SelectorEvent);
+  selector2 = createCheckbox('Luma',false);
+  selector2.position(600,30);
+  selector2.style('color', 'white');  
+  selector2.changed(SelectorEvent2);
+}
+
+function SelectorEvent(){
+  if (selector.checked()) {
+    lumaShader.setUniform('texture', video);
+    vidLoad();
+  } else {
+    lumaShader.setUniform('texture', imagen);
+  }
+}
+
+function SelectorEvent2(){
+  if (selector2.checked()) {
+    lumaShader.setUniform('filter_selected', 1);
+  }else{
+     lumaShader.setUniform('filter_selected', 0);
+  }
+}
+
+
+function vidLoad() {
+  video.loop();
+  video.speed(1);
+  video.volume(0);
+  video.hide();
+}
+
+function draw() {
+  
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+
+}
+
+function keyPressed(){
+  if(key == 'z'){
+    
+  }
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+}
+
+
+
+              function myfunction() {
+                resetPosition();
+              }
+
+            </script>
+            
+          </head>
+          <body style='background-color:#343a40;'>
+          </body>
+        </html>
+      "></iframe></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/350e626a03d148195f10511f3c1ebf7b52537e8d title='Last modified by Cesar David Pineda Osorio | June 28, 2022' target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 28, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#image-processing>Image Processing</a></li></ul></nav></div></aside></main></body></html>
