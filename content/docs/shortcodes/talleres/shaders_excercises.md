@@ -288,7 +288,7 @@ vec3 lumaFunction() {
     float V;
      
     if (filter_selected == 1.0){
-      V = dot(color.rgb, vec3(0.5,0.5,0.3));
+      V = dot(color.rgb, vec3(0.5,0.5,0.1));
     }
 
     vec3 result = vec3(V);
