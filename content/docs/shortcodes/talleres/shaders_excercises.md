@@ -95,118 +95,8 @@ function draw() {
 let lumaShader;
 let img;
 let grey_scale;
-let hSlider, sSlider, bSlider;
-let _hSlider, _sSlider, _lSlider;
-
-function preload() {
-  lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
-  // image source: https://i.pinimg.com/736x/09/83/1f/09831fcddd633566d10508b171b69441--wolf-wallpaper-animal-wallpaper.jpg
-  img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
-}
-
-function setup() {
-  createCanvas(700, 500, WEBGL);
-  noStroke();
-  textureMode(NORMAL);
-  shader(lumaShader);
-  grey_scale = createCheckbox('luma', false);
-  grey_scale.position(10, 10);
-  grey_scale.style('color', 'white');
-  grey_scale.input(() => lumaShader.setUniform('grey_scale', grey_scale.checked()));
-  lumaShader.setUniform('texture', img);
-
-
-    // HSB
-  hSlider = createSlider(0, 360, 0);
-  hSlider.position(20, 245)
-  sSlider = createSlider(0, 100, 80);
-  sSlider.position(20, 275)
-  bSlider = createSlider(0, 100, 80);
-  bSlider.position(20, 310)
-
-  // HSL
-  _hSlider = createSlider(0, 360, 0);
-  _hSlider.position(20, 470)
-  _sSlider = createSlider(0, 100, 80);
-  _sSlider.position(20, 500)
-  _lSlider = createSlider(0, 50, 40);
-  _lSlider.position(20, 530)
-}
-
-function draw() {
-  background(0);
-  quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
-
-
-  /************** HSB **************/
-  push();
-  colorMode(HSB, 360, 100, 100);
-  let h = hSlider.value();
-  let s = sSlider.value();
-  let b = bSlider.value();
-
-  fill(h, s, b);
-  rect(0, 225, width, 200);
-
-  fill(0);
-  text(`hue ${h}`, hSlider.x * 2 + hSlider.width, 260);
-  text(`saturation ${s}`, sSlider.x * 2 + sSlider.width, 290);
-  text(`brightness ${b}`, bSlider.x * 2 + bSlider.width, 320);
-  text(`HSB`, 360, 410);
-  pop();
-
-  /************** HSL **************/
-  push();
-  colorMode(HSL, 360, 100, 50);
-  let _h = _hSlider.value();
-  let _s = _sSlider.value();
-  let _l = _lSlider.value();
-
-  fill(_h, _s, _l);
-  rect(0, 450, width, 200);
-
-  fill(0);
-  text(`hue ${_h}`, _hSlider.x * 2 + _hSlider.width, 485);
-  text(`saturation ${_s}`, _sSlider.x * 2 + _sSlider.width, 515);
-  text(`lightness ${_l}`, _lSlider.x * 2 + _lSlider.width, 545);
-  text(`HSL`, 360, 635);
-  pop();
-
-}
-```
-{{< /details >}}
-
-{{< details title="luma.frag" open=false >}}
-```frag
-precision mediump float;
-
-// uniforms are defined and sent by the sketch
-uniform bool grey_scale;
-uniform sampler2D texture;
-
-// interpolated texcoord (same name and type as in vertex shader)
-varying vec2 texcoords2;
-
-// returns luma of given texel
-float luma(vec3 texel) {
-  return 0.299 * texel.r + 0.587 * texel.g + 0.114 * texel.b;
-}
-
-void main() {
-  // texture2D(texture, texcoords2) samples texture at texcoords2 
-  // and returns the normalized texel color
-  vec4 texel = texture2D(texture, texcoords2);
-  gl_FragColor = grey_scale ? vec4((vec3(luma(texel.rgb))), 1.0) : texel;
-}
-```
-{{< /details >}}
-
-{{< p5-global-iframe id="breath" width="700" height="600">}}
-let lumaShader;
-let img;
-let grey_scale;
-let hSlider, sSlider, bSlider;
-let _hSlider, _sSlider, _lSlider;
+let HSL_effect;
+let HSV_effect;
 
 let myFont;
 
@@ -223,69 +113,147 @@ function setup() {
   noStroke();
   textureMode(NORMAL);
   shader(lumaShader);
-  grey_scale = createCheckbox('Luma', false);
+
+  grey_scale = createCheckbox('Luma effect', false);
   grey_scale.position(10, 10);
   grey_scale.style('color', 'white');
   grey_scale.input(() => lumaShader.setUniform('grey_scale', grey_scale.checked()));
   lumaShader.setUniform('texture', img);
 
+  //HSL
+  HSL_effect = createCheckbox('HSL effect', false);
+  HSL_effect.position(10, 30);
+  HSL_effect.style('color', 'white');
+  HSL_effect.input(() => lumaShader.setUniform('HSL_effect', HSL_effect.checked()));
+  lumaShader.setUniform('texture', img);
 
-    // HSB
-  hSlider = createSlider(0, 360, 0);
-  hSlider.position(20, 135)
-  sSlider = createSlider(0, 100, 80);
-  sSlider.position(20, 165)
-  bSlider = createSlider(0, 100, 80);
-  bSlider.position(20, 200)
-
-  // HSL
-  _hSlider = createSlider(0, 360, 0);
-  _hSlider.position(20, 420)
-  _sSlider = createSlider(0, 100, 80);
-  _sSlider.position(20, 450)
-  _lSlider = createSlider(0, 50, 40);
-  _lSlider.position(20, 480)
+  //HSV
+  HSV_effect = createCheckbox('HSV effect', false);
+  HSV_effect.position(130, 11);
+  HSV_effect.style('color', 'white');
+  HSV_effect.input(() => lumaShader.setUniform('HSV_effect', HSV_effect.checked()));
+  lumaShader.setUniform('texture', img);
 }
 
 function draw() {
   textFont(arial);
-  /************** HSB **************/
-  push();
-  colorMode(HSB, 360, 100, 100);
-  let h = hSlider.value();
-  let s = sSlider.value();
-  let b = bSlider.value();
-
-  fill(h, s, b);
-  //rect(0, 225, width, 200);
-
-  fill(0);
-  text(`hue ${h}`, hSlider.x * 2 + hSlider.width, 260);
-  text(`saturation ${s}`, sSlider.x * 2 + sSlider.width, 290);
-  text(`brightness ${b}`, bSlider.x * 2 + bSlider.width, 320);
-  text(`HSB`, 360, 410);
-  pop();
-
-  /************** HSL **************/
-  push();
-  colorMode(HSL, 360, 100, 50);
-  let _h = _hSlider.value();
-  let _s = _sSlider.value();
-  let _l = _lSlider.value();
-
-  fill(_h, _s, _l);
-  //rect(0, 450, width, 200);
-
-  fill(0);
-  text(`hue ${_h}`, _hSlider.x * 2 + _hSlider.width, 485);
-  text(`saturation ${_s}`, _sSlider.x * 2 + _sSlider.width, 515);
-  text(`lightness ${_l}`, _lSlider.x * 2 + _lSlider.width, 545);
-  text(`HSL`, 360, 635);
-  pop();
-
   background(0);
   quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
+}
+```
+{{< /details >}}
 
+{{< details title="luma.frag" open=false >}}
+```frag
+precision mediump float;
+
+// uniforms are defined and sent by the sketch
+uniform bool grey_scale;
+uniform bool HSL_effect;
+uniform bool HSV_effect;
+uniform sampler2D texture;
+
+// interpolated texcoord (same name and type as in vertex shader)
+varying vec2 texcoords2;
+
+// returns luma of given texel
+float luma(vec3 texel) {
+  return 0.299 * texel.r + 0.587 * texel.g + 0.114 * texel.b;
+}
+
+//HSV of given texel
+float HSV(vec3 texel) {
+  float r = texel.r;
+  float g = texel.g;
+  float b = texel.b;
+  
+  float Cmax = max(r,max(g,b)); 
+
+  float V = Cmax;
+  return V; 
+}
+
+//HSL of given texel
+float HSL(vec3 texel) {
+  float r = texel.r;
+  float g = texel.g;
+  float b = texel.b;
+  
+  float Cmax = max(r,max(g,b)); 
+  float Cmin = min(r,min(g,b));
+
+  float L = (Cmax + Cmin) / 2.0;
+  return L; 
+}
+
+void main() {
+  // texture2D(texture, texcoords2) samples texture at texcoords2 
+  // and returns the normalized texel color
+  vec4 texel = texture2D(texture, texcoords2);
+
+  if (grey_scale == true){
+    gl_FragColor = vec4((vec3(luma(texel.rgb))), 1.0);
+  }
+  else if(HSV_effect == true){
+    gl_FragColor = vec4(vec3(HSV(texel.rgb)), 1.0);
+  }
+  else if(HSL_effect == true){
+    gl_FragColor = vec4(vec3(HSL(texel.rgb)), 1.0);
+  }
+  else{
+    gl_FragColor = texel;
+  }
+}
+```
+{{< /details >}}
+
+{{< p5-global-iframe id="breath" width="700" height="600">}}
+let lumaShader;
+let img;
+let grey_scale;
+let HSL_effect;
+let HSV_effect;
+
+let myFont;
+
+function preload() {
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
+  img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
+  arial = loadFont('/Visual-Computing/sketches/arial.ttf');
+}
+
+function setup() {
+  
+  createCanvas(700, 500, WEBGL);
+  noStroke();
+  textureMode(NORMAL);
+  shader(lumaShader);
+
+  grey_scale = createCheckbox('Luma effect', false);
+  grey_scale.position(10, 10);
+  grey_scale.style('color', 'white');
+  grey_scale.input(() => lumaShader.setUniform('grey_scale', grey_scale.checked()));
+  lumaShader.setUniform('texture', img);
+
+  //HSL
+  HSL_effect = createCheckbox('HSL effect', false);
+  HSL_effect.position(10, 30);
+  HSL_effect.style('color', 'white');
+  HSL_effect.input(() => lumaShader.setUniform('HSL_effect', HSL_effect.checked()));
+  lumaShader.setUniform('texture', img);
+
+  //HSV
+  HSV_effect = createCheckbox('HSV effect', false);
+  HSV_effect.position(130, 11);
+  HSV_effect.style('color', 'white');
+  HSV_effect.input(() => lumaShader.setUniform('HSV_effect', HSV_effect.checked()));
+  lumaShader.setUniform('texture', img);
+}
+
+function draw() {
+  textFont(arial);
+  background(0);
+  quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
 }
 
 {{< /p5-global-iframe >}}
@@ -392,92 +360,54 @@ void main() {
 
 ## Procedural texturing
 
-{{< details title="truchet_tiles.js" open=false >}}
+{{< details title="proc-texturing.js" open=false >}}
 ```js
 let pg;
 let truchetShader;
 
 function preload() {
-  // shader adapted from here: https://thebookofshaders.com/09/
-  truchetShader = readShader('/Visual-Computing/sketches/shaders/truchet.frag', { matrices: Tree.NONE, varyings: Tree.NONE });
+    pixelShader = readShader('/Visual-Computing/sketches/shaders/pixelShader.frag', { matrices: Tree.NONE, varyings: Tree.NONE});
 }
 
 function setup() {
-  createCanvas(400, 400, WEBGL);
-  // create frame buffer object to render the procedural texture
-  pg = createGraphics(400, 400, WEBGL);
-  textureMode(NORMAL);
-  noStroke();
-  pg.noStroke();
-  pg.textureMode(NORMAL);
-  // use truchetShader to render onto pg
-  pg.shader(truchetShader);
-  // emitResolution, see:
-  // https://github.com/VisualComputing/p5.treegl#macros
-  pg.emitResolution(truchetShader);
-  // https://p5js.org/reference/#/p5.Shader/setUniform
-  truchetShader.setUniform('u_zoom', 3);
-  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
-  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
-  // set pg as texture
-  texture(pg);
+    createCanvas(380, 380, WEBGL);
+    pg = createGraphics(380, 380, WEBGL);
+    textureMode(NORMAL);
+    noStroke();
+
+
+    // Shader
+    selShader = createSelect();
+    selShader.changed(changeShader);
+
+    pg.noStroke();
+    pg.textureMode(NORMAL);
+
+    let val = selShader.value();
+
+    pg.shader(pixelShader);
+    pg.emitResolution(pixelShader);
+    pixelShader.setUniform('u_zoom', 3);
+
+    pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+    texture(pg);
+
 }
 
 function draw() {
-  background(33);
-  orbitControl();
-  cylinder(100, 200);
+    orbitControl();
+    background('#222222');
+    let shape = torus(90, 45);  
 }
 
-function mouseMoved() {
-  // https://p5js.org/reference/#/p5.Shader/setUniform
-  truchetShader.setUniform('u_zoom', int(map(mouseX, 0, width, 1, 30)));
-  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
-  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+function changeShader(){
+    pg.shader(pixelShader);
+    pg.emitResolution(pixelShader);
+    pixelShader.setUniform('u_zoom', 3);
+    pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
+    texture(pg);
 }
 ```
 {{< /details >}}
 
-{{< p5-global-iframe id="breath" width="400" height="400">}}
-let pg;
-let truchetShader;
-
-function preload() {
-  // shader adapted from here: https://thebookofshaders.com/09/
-  truchetShader = readShader('/Visual-Computing/sketches/shaders/truchet.frag', { matrices: Tree.NONE, varyings: Tree.NONE });
-}
-
-function setup() {
-  createCanvas(400, 400, WEBGL);
-  // create frame buffer object to render the procedural texture
-  pg = createGraphics(400, 400, WEBGL);
-  textureMode(NORMAL);
-  noStroke();
-  pg.noStroke();
-  pg.textureMode(NORMAL);
-  // use truchetShader to render onto pg
-  pg.shader(truchetShader);
-  // emitResolution, see:
-  // https://github.com/VisualComputing/p5.treegl#macros
-  pg.emitResolution(truchetShader);
-  // https://p5js.org/reference/#/p5.Shader/setUniform
-  truchetShader.setUniform('u_zoom', 3);
-  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
-  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
-  // set pg as texture
-  texture(pg);
-}
-
-function draw() {
-  background(33);
-  orbitControl();
-  cylinder(100, 200);
-}
-
-function mouseMoved() {
-  // https://p5js.org/reference/#/p5.Shader/setUniform
-  truchetShader.setUniform('u_zoom', int(map(mouseX, 0, width, 1, 30)));
-  // pg clip-space quad (i.e., both x and y vertex coordinates ∈ [-1..1])
-  pg.quad(-1, -1, 1, -1, 1, 1, -1, 1);
-}
-{{< /p5-global-iframe >}}
+{{< p5-iframe sketch="/Visual-Computing/sketches/shaders/proc-texturing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" lib2="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.js" width="410" height="430" >}}
