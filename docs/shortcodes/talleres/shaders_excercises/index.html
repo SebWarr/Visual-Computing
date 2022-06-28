@@ -1,7 +1,7 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Shaders # UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/Visual-Computing/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js.org/reference/#/p5/shader shader(uvShader); // https://p5js.org/reference/#/p5/textureMode // best and simplest is to just always used NORMAL textureMode(NORMAL); } function draw() { background(0); // clip-space quad (i."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Shaders # UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/Visual-Computing/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js.org/reference/#/p5/shader shader(uvShader); // https://p5js.org/reference/#/p5/textureMode // best and simplest is to just always used NORMAL textureMode(NORMAL); } function draw() { background(0); // clip-space quad (i."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/shaders_excercises/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-06-28T02:46:24-05:00"><title>Shaders Excercises | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
-<script defer src=/Visual-Computing/en.search.min.c203b39686efaab22c47823489d48e1f4f0a816aff883836fed0aab0cb73a0fd.js integrity="sha256-wgOzlobvqrIsR4I0idSOH08KgWr/iDg2/tCqsMtzoP0=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Shaders # UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/Visual-Computing/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js.org/reference/#/p5/shader shader(uvShader); // https://p5js.org/reference/#/p5/textureMode // best and simplest is to just always used NORMAL textureMode(NORMAL); } function draw() { background(0); // clip-space quad (i."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Shaders # UV Visualization # uv.js let uvShader; function preload() { // Define geometry directly in clip space (i.e., matrices: Tree.NONE). // Interpolate only texture coordinates (i.e., varyings: Tree.texcoords2). // see: https://github.com/VisualComputing/p5.treegl#handling uvShader = readShader('/Visual-Computing/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 }); } function setup() { // shaders require WEBGL mode to work createCanvas(300, 300, WEBGL); noStroke(); // see: https://p5js.org/reference/#/p5/shader shader(uvShader); // https://p5js.org/reference/#/p5/textureMode // best and simplest is to just always used NORMAL textureMode(NORMAL); } function draw() { background(0); // clip-space quad (i."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/Visual-Computing/docs/shortcodes/talleres/shaders_excercises/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-06-28T09:44:35-05:00"><title>Shaders Excercises | Showcase Template</title><link rel=manifest href=/Visual-Computing/manifest.json><link rel=icon href=/Visual-Computing/favicon.png type=image/x-icon><link rel=stylesheet href=/Visual-Computing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/Visual-Computing/flexsearch.min.js></script>
+<script defer src=/Visual-Computing/en.search.min.4b5d1f9db820c160e3c619d939cd5a60966c5705c626289530a9cbb780fd1ce7.js integrity="sha256-S10fnbggwWDjxhnZOc1aYJZsVwXGJiiVMKnLt4D9HOc=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/Visual-Computing/><span>Showcase Template</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><a href=/Visual-Computing/docs/shortcodes/buttons/>Buttons</a></li><li><a href=/Visual-Computing/docs/shortcodes/columns/>Columns</a></li><li><a href=/Visual-Computing/docs/shortcodes/details/>Details</a></li><li><a href=/Visual-Computing/docs/shortcodes/expand/>Expand</a></li><li><a href=/Visual-Computing/docs/shortcodes/hints/>Hints</a></li><li><a href=/Visual-Computing/docs/shortcodes/tabs/>Tabs</a></li><li><input type=checkbox id=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class=toggle checked>
-<label for=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/talleres/>Talleres</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/talleres/3D-brush/>3 D Brush</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/image_processing/>Image Processing</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/rasterization/>Rasterization</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/shaders_excercises/ class=active>Shaders Excercises</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/watercolor/>Watercolor</a></li></ul></li></ul></li></ul><ul><li><a href=/Visual-Computing/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/Visual-Computing/svg/menu.svg class=book-icon alt=Menu></label>
+<label for=section-b799dcc3c90fdccf6fcb76e744e8a2c0 class="flex justify-between"><a href=/Visual-Computing/docs/shortcodes/talleres/>Talleres</a></label><ul><li><a href=/Visual-Computing/docs/shortcodes/talleres/3D-brush/>3 D Brush</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/rasterization/>Rasterization</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/shaders_excercises/ class=active>Shaders Excercises</a></li><li><a href=/Visual-Computing/docs/shortcodes/talleres/watercolor/>Watercolor</a></li></ul></li></ul></li></ul><ul><li><a href=/Visual-Computing/posts/>Blog</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/Visual-Computing/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Shaders Excercises</strong>
 <label for=toc-control><img src=/Visual-Computing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#uv-visualization>UV Visualization</a></li><li><a href=#texture-sampling>Texture sampling</a></li><li><a href=#image-processing>Image processing</a></li><li><a href=#procedural-texturing>Procedural texturing</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=shaders>Shaders
 <a class=anchor href=#shaders>#</a></h1><h2 id=uv-visualization>UV Visualization
@@ -319,52 +319,146 @@ function draw() {
           </body>
         </html>
       "></iframe><h2 id=image-processing>Image processing
-<a class=anchor href=#image-processing>#</a></h2><details><summary>mask.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-frag data-lang=frag><span style=display:flex><span><span style=color:#66d9ef>precision</span> <span style=color:#66d9ef>mediump</span> <span style=color:#66d9ef>float</span>;
+<a class=anchor href=#image-processing>#</a></h2><details><summary>lumaImageP.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-frag data-lang=frag><span style=display:flex><span><span style=color:#66d9ef>precision</span> <span style=color:#66d9ef>mediump</span> <span style=color:#66d9ef>float</span>;
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>bool</span> grey_scale;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>sampler2D</span> texture;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>vec2</span> texOffset;
-</span></span><span style=display:flex><span><span style=color:#75715e>// holds the 3x3 kernel</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>float</span> mask[<span style=color:#ae81ff>9</span>];
+</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>vec2</span> mouse_position;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>float</span> filter_selected;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>vec2</span> u_resolution;
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// we need our interpolated tex coord</span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>varying</span> <span style=color:#66d9ef>vec2</span> texcoords2;
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> main() {
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 1. Use offset to move along texture space.</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// In this case to find the texcoords of the texel neighbours.</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc0 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>-</span>texOffset.s, <span style=color:#f92672>-</span>texOffset.t);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc1 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(         <span style=color:#ae81ff>0.0</span>, <span style=color:#f92672>-</span>texOffset.t);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc2 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>+</span>texOffset.s, <span style=color:#f92672>-</span>texOffset.t);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc3 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>-</span>texOffset.s,          <span style=color:#ae81ff>0.0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// origin (current fragment texcoords)</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc4 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(         <span style=color:#ae81ff>0.0</span>,          <span style=color:#ae81ff>0.0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc5 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>+</span>texOffset.s,          <span style=color:#ae81ff>0.0</span>);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc6 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>-</span>texOffset.s, <span style=color:#f92672>+</span>texOffset.t);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc7 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(         <span style=color:#ae81ff>0.0</span>, <span style=color:#f92672>+</span>texOffset.t);
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> tc8 <span style=color:#f92672>=</span> texcoords2 <span style=color:#f92672>+</span> <span style=color:#66d9ef>vec2</span>(<span style=color:#f92672>+</span>texOffset.s, <span style=color:#f92672>+</span>texOffset.t);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>vec3</span> lumaFunction() {
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 2. Sample texel neighbours within the rgba array</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec4</span> rgba[<span style=color:#ae81ff>9</span>];
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> texture2D(texture, tc0);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> texture2D(texture, tc1);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> texture2D(texture, tc2);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>3</span>] <span style=color:#f92672>=</span> texture2D(texture, tc3);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>4</span>] <span style=color:#f92672>=</span> texture2D(texture, tc4);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>5</span>] <span style=color:#f92672>=</span> texture2D(texture, tc5);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>6</span>] <span style=color:#f92672>=</span> texture2D(texture, tc6);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>7</span>] <span style=color:#f92672>=</span> texture2D(texture, tc7);
-</span></span><span style=display:flex><span>  rgba[<span style=color:#ae81ff>8</span>] <span style=color:#f92672>=</span> texture2D(texture, tc8);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec4</span> color <span style=color:#f92672>=</span> texture2D(texture, texcoords2);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> st <span style=color:#f92672>=</span> gl_FragCoord.xy; 
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec2</span> mouse <span style=color:#f92672>=</span> <span style=color:#66d9ef>vec2</span>(mouse_position.x, <span style=color:#ae81ff>500.0</span> <span style=color:#f92672>-</span> mouse_position.y);
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 3. Apply convolution kernel</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>vec4</span> convolution;
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>9</span>; i<span style=color:#f92672>++</span>) {
-</span></span><span style=display:flex><span>    convolution <span style=color:#f92672>+=</span> rgba[i]<span style=color:#f92672>*</span>mask[i];
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(distance(st,mouse)<span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>150.0</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>vec4</span> color <span style=color:#f92672>=</span> texture2D(texture, <span style=color:#66d9ef>vec2</span>((<span style=color:#ae81ff>1.0</span><span style=color:#f92672>-</span> mouse.x<span style=color:#f92672>/</span><span style=color:#ae81ff>700.0</span>) <span style=color:#f92672>+</span> (texcoords2.x <span style=color:#f92672>-</span> mouse.x<span style=color:#f92672>/</span><span style=color:#ae81ff>700.0</span>)<span style=color:#f92672>*</span><span style=color:#ae81ff>0.3</span>,(<span style=color:#ae81ff>1.0</span><span style=color:#f92672>-</span> mouse.y<span style=color:#f92672>/</span><span style=color:#ae81ff>500.0</span>) <span style=color:#f92672>+</span> (texcoords2.y <span style=color:#f92672>-</span> mouse.y<span style=color:#f92672>/</span><span style=color:#ae81ff>500.0</span>)<span style=color:#f92672>*</span><span style=color:#ae81ff>0.3</span>));
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> r <span style=color:#f92672>=</span> color.r;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> g <span style=color:#f92672>=</span> color.g;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> b <span style=color:#f92672>=</span> color.b;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> V;
+</span></span><span style=display:flex><span>     
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (filter_selected <span style=color:#f92672>==</span> <span style=color:#ae81ff>1.0</span>){
+</span></span><span style=display:flex><span>      V <span style=color:#f92672>=</span> dot(color.rgb, <span style=color:#66d9ef>vec3</span>(<span style=color:#ae81ff>0.5</span>,<span style=color:#ae81ff>0.5</span>,<span style=color:#ae81ff>0.3</span>));
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>vec3</span> result <span style=color:#f92672>=</span> <span style=color:#66d9ef>vec3</span>(V);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (filter_selected <span style=color:#f92672>==</span> <span style=color:#ae81ff>1.0</span>){
+</span></span><span style=display:flex><span>     
+</span></span><span style=display:flex><span>    }<span style=color:#66d9ef>else</span>{
+</span></span><span style=display:flex><span>      result.r <span style=color:#f92672>=</span> r;
+</span></span><span style=display:flex><span>      result.g <span style=color:#f92672>=</span> g;
+</span></span><span style=display:flex><span>      result.b <span style=color:#f92672>=</span> b;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> result;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  }<span style=color:#66d9ef>else</span>{
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>vec4</span> color <span style=color:#f92672>=</span> texture2D(texture, texcoords2);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> r <span style=color:#f92672>=</span> color.r;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> g <span style=color:#f92672>=</span> color.g;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> b <span style=color:#f92672>=</span> color.b;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> (<span style=color:#66d9ef>vec3</span>(r,g,b));
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// 4. Set color from convolution</span>
-</span></span><span style=display:flex><span>  gl_FragColor <span style=color:#f92672>=</span> <span style=color:#66d9ef>vec4</span>(convolution.rgb, <span style=color:#ae81ff>1.0</span>); 
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div></div></details><iframe frameborder=0 id=breath style=width:400px;height:400px srcdoc="
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> main() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  gl_FragColor <span style=color:#f92672>=</span> <span style=color:#66d9ef>vec4</span>(lumaFunction(), <span style=color:#ae81ff>1.0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><details><summary>lumaImageP.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lumaShader</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>imgage</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>selector</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>vid</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lumaShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/Visual-Computing/sketches/shaders/lumaImageP.frag&#39;</span>, {<span style=color:#a6e22e>matrices</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>NONE</span>});
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//Fuente: https://www.facebook.com/photo/?fbid=166623455104115&amp;set=a.166623418437452
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>imagen</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadImage</span>(<span style=color:#e6db74>&#39;/Visual-Computing/sketches/aulas.jpg&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createVideo</span>(<span style=color:#e6db74>&#34;/Visual-Computing/sketches/unalbog.mp4&#34;</span>,<span style=color:#a6e22e>vidLoad</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span>.<span style=color:#a6e22e>hide</span>();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>700</span>, <span style=color:#ae81ff>500</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>lumaShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>imagen</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createCheckbox</span>(<span style=color:#e6db74>&#39;Iniciar Video&#39;</span>,<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>600</span>,<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;color&#39;</span>, <span style=color:#e6db74>&#39;white&#39;</span>);  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector</span>.<span style=color:#a6e22e>changed</span>(<span style=color:#a6e22e>SelectorEvent</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createCheckbox</span>(<span style=color:#e6db74>&#39;Luma&#39;</span>,<span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector2</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>600</span>,<span style=color:#ae81ff>30</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector2</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;color&#39;</span>, <span style=color:#e6db74>&#39;white&#39;</span>);  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>selector2</span>.<span style=color:#a6e22e>changed</span>(<span style=color:#a6e22e>SelectorEvent2</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>SelectorEvent</span>(){
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>selector</span>.<span style=color:#a6e22e>checked</span>()) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>video</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vidLoad</span>();
+</span></span><span style=display:flex><span>  } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>imagen</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>SelectorEvent2</span>(){
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>selector2</span>.<span style=color:#a6e22e>checked</span>()) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;filter_selected&#39;</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  }<span style=color:#66d9ef>else</span>{
+</span></span><span style=display:flex><span>     <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;filter_selected&#39;</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>vidLoad</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span>.<span style=color:#a6e22e>loop</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span>.<span style=color:#a6e22e>speed</span>(<span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span>.<span style=color:#a6e22e>volume</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>video</span>.<span style=color:#a6e22e>hide</span>();
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;mouse_position&#39;</span>, [<span style=color:#a6e22e>mouseX</span>,<span style=color:#a6e22e>mouseY</span>]);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>quad</span>(
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>keyPressed</span>(){
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>key</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;z&#39;</span>){
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;mouse_position&#39;</span>, [<span style=color:#a6e22e>mouseX</span>,<span style=color:#a6e22e>mouseY</span>]);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>quad</span>(
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><iframe frameborder=0 id=imageProcessing style=width:800px;height:600px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -394,51 +488,88 @@ function draw() {
               var info;
               var accelero;
               
-precision mediump float;
 
-uniform sampler2D texture;
-uniform vec2 texOffset;
-// holds the 3x3 kernel
-uniform float mask[9];
+let lumaShader;
+let imgage;
+let selector;
+let vid;
 
-// we need our interpolated tex coord
-varying vec2 texcoords2;
-
-void main() {
-  // 1. Use offset to move along texture space.
-  // In this case to find the texcoords of the texel neighbours.
-  vec2 tc0 = texcoords2 + vec2(-texOffset.s, -texOffset.t);
-  vec2 tc1 = texcoords2 + vec2(         0.0, -texOffset.t);
-  vec2 tc2 = texcoords2 + vec2(+texOffset.s, -texOffset.t);
-  vec2 tc3 = texcoords2 + vec2(-texOffset.s,          0.0);
-  // origin (current fragment texcoords)
-  vec2 tc4 = texcoords2 + vec2(         0.0,          0.0);
-  vec2 tc5 = texcoords2 + vec2(+texOffset.s,          0.0);
-  vec2 tc6 = texcoords2 + vec2(-texOffset.s, +texOffset.t);
-  vec2 tc7 = texcoords2 + vec2(         0.0, +texOffset.t);
-  vec2 tc8 = texcoords2 + vec2(+texOffset.s, +texOffset.t);
-
-  // 2. Sample texel neighbours within the rgba array
-  vec4 rgba[9];
-  rgba[0] = texture2D(texture, tc0);
-  rgba[1] = texture2D(texture, tc1);
-  rgba[2] = texture2D(texture, tc2);
-  rgba[3] = texture2D(texture, tc3);
-  rgba[4] = texture2D(texture, tc4);
-  rgba[5] = texture2D(texture, tc5);
-  rgba[6] = texture2D(texture, tc6);
-  rgba[7] = texture2D(texture, tc7);
-  rgba[8] = texture2D(texture, tc8);
-
-  // 3. Apply convolution kernel
-  vec4 convolution;
-  for (int i = 0; i < 9; i++) {
-    convolution += rgba[i]*mask[i];
-  }
-
-  // 4. Set color from convolution
-  gl_FragColor = vec4(convolution.rgb, 1.0); 
+function preload() {
+  lumaShader = readShader('/Visual-Computing/sketches/shaders/lumaImageP.frag', {matrices: Tree.NONE});
+  //Fuente: https://www.facebook.com/photo/?fbid=166623455104115&set=a.166623418437452
+  imagen = loadImage('/Visual-Computing/sketches/aulas.jpg');
+  video = createVideo(&#34;/Visual-Computing/sketches/unalbog.mp4&#34;,vidLoad);
+  video.hide();
 }
+
+function setup() {
+  
+  createCanvas(700, 500, WEBGL);
+  noStroke();
+  textureMode(NORMAL);
+  shader(lumaShader);
+  lumaShader.setUniform('texture', imagen);
+
+  selector = createCheckbox('Iniciar Video',false);
+  selector.position(600,10);
+  selector.style('color', 'white');  
+  selector.changed(SelectorEvent);
+  selector2 = createCheckbox('Luma',false);
+  selector2.position(600,30);
+  selector2.style('color', 'white');  
+  selector2.changed(SelectorEvent2);
+}
+
+function SelectorEvent(){
+  if (selector.checked()) {
+    lumaShader.setUniform('texture', video);
+    vidLoad();
+  } else {
+    lumaShader.setUniform('texture', imagen);
+  }
+}
+
+function SelectorEvent2(){
+  if (selector2.checked()) {
+    lumaShader.setUniform('filter_selected', 1);
+  }else{
+     lumaShader.setUniform('filter_selected', 0);
+  }
+}
+
+
+function vidLoad() {
+  video.loop();
+  video.speed(1);
+  video.volume(0);
+  video.hide();
+}
+
+function draw() {
+  
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+
+}
+
+function keyPressed(){
+  if(key == 'z'){
+    
+  }
+  background(0);
+  lumaShader.setUniform('mouse_position', [mouseX,mouseY]);
+  quad(
+  1, 1, -1,
+  1, -1, -1,
+  1, -1
+  );
+}
+
 
 
               function myfunction() {
@@ -513,5 +644,5 @@ void main() {
           <body>
           </body>
         </html>
-      "></iframe></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/475bbd518b40e14674673876167a344364e7406c title='Last modified by SebWarr | June 28, 2022' target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
+      "></iframe></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/ca1e0bd6f68d27edef76cafdc376790f0314aef2 title='Last modified by Cesar David Pineda Osorio | June 28, 2022' target=_blank rel=noopener><img src=/Visual-Computing/svg/calendar.svg class=book-icon alt=Calendar>
 <span>June 28, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#uv-visualization>UV Visualization</a></li><li><a href=#texture-sampling>Texture sampling</a></li><li><a href=#image-processing>Image processing</a></li><li><a href=#procedural-texturing>Procedural texturing</a></li></ul></li></ul></nav></div></aside></main></body></html>
