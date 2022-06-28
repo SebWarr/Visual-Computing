@@ -208,13 +208,17 @@ let grey_scale;
 let hSlider, sSlider, bSlider;
 let _hSlider, _sSlider, _lSlider;
 
+let myFont;
+
 function preload() {
   lumaShader = readShader('/Visual-Computing/sketches/shaders/luma.frag', { varyings: Tree.texcoords2 });
   // image source: https://i.pinimg.com/736x/09/83/1f/09831fcddd633566d10508b171b69441--wolf-wallpaper-animal-wallpaper.jpg
   img = loadImage('/Visual-Computing/sketches/shaders/wolf.jpg');
+  arial = loadFont('/Visual-Computing/sketches/arial.ttf');
 }
 
 function setup() {
+  
   createCanvas(700, 500, WEBGL);
   noStroke();
   textureMode(NORMAL);
@@ -244,7 +248,7 @@ function setup() {
 }
 
 function draw() {
-
+  textFont(arial);
   /************** HSB **************/
   push();
   colorMode(HSB, 360, 100, 100);
