@@ -1,6 +1,46 @@
 # Shaders
 
-## UV Visualization
+## Introducción
+
+En el campo de las gráficas o dibujos con computadores, se sabe que primero se dibuja un círculo, luego un rectángulo, una línea, algunos triángulos hasta componer la imagen buscada. Dicho proceso es muy similar a tareas como escribir un libro o algunas notas a mano: son una variedad de instrucciones que realizan una tarea tras otra.
+
+Los shaders de igual forma son un conjunto de instrucciones, pero estas instrucciones particulares se ejecutan todas a la vez para cada píxel de la pantalla. Eso quiere decir que el código tiene que comportarse de manera diferente según la posición del píxel en la pantalla. Se entiende pues como shader, a un programa que se ejecuta en el pipeline de gráficos y le dice a la computadora cómo representar cada píxel en las imagenes y al compilarse se ejecuta muy rápido. Estos programas se llaman así (sombreadores), porque a menudo se usan para controlar la iluminación y los efectos de sombreado, sin embargo no existen motivos para que no puedan intervenir con otros efectos especiales.
+
+## Antecedentes
+
+Los shaders convencionales calculan los efectos del rendering en el hardware de gráficos con alta flexibilidad. La mayoría de los shaders están codificados, y se ejecutan, en una GPU, aunque esto no es estrictamente necesario. Los lenguajes de los shaders se utilizan para programar los pipelines de renderizado de la GPU, que en su mayoría han reemplazado a los pipelines de funciones fijas del pasado que solo permitían funciones comunes de transformación de geometría y sombreado de píxeles; con shaders, se pueden usar efectos propios o personalizados. La posición y el color (hue, saturation, brightness, and contrast) de todos los píxeles, vértices y/o texturas utilizados para construir una imagen renderizada final se pueden modificar mediante algoritmos definidos en un shader y se pueden modificar mediante variables o texturas externas que son agregadas por el programa que llama al shader.
+
+## Métodos
+
+### Promedio RGB
+
+El promedio de los canales (RGB) es un enfoque que busca calcular el promedio de los 3 canales (rojo, verde y azul) para cada píxel de la imagen, obteniendo un único valor, que será asignado en cada uno de los 3 canales del píxel correspondiente de la nueva imagen generada. Esto combina la luminosidad aportada por cada banda de color en un gris razonable
+
+La definición más simple es la de la media aritmética o también conocida como el promedio, de los tres componentes, en el modelo HSI llamado intensidad. Esto es la proyección de un punto sobre el eje neutral: la altura vertical de un punto en nuestro cubo inclinado. La ventaja es que, junto con los cálculos de tono y croma de distancia euclidiana, esta representación conserva las distancias y los ángulos de la geometría de la aproximación del cubo RGB.
+
+{{< katex display >}} I = avg(R,G,B) = \frac{1}{3} (R +  G +  B) {{< /katex >}}
+
+### Vertex Shader
+
+La entrada o parte inicial para renderizar una imagen es que los datos geométricos se conviertan de un sistema de coordenadas a otro sistema de coordenadas.
+
+### Fragment Shader
+
+Es la etapa del shader que procesará un fragmento generado por la rasterización en un conjunto de colores y un único valor de profundidad.
+
+### Luma
+
+Para el ojo humano común, el color verde parece unas diez veces más brillante que el azul. A través de muchos experimentos repetidos en varias ocasiones y cuidadosamente diseñados, los psicólogos han descubierto cuán diferentes percibimos la luminancia o el rojo, el verde y el azul. Nos han proporcionado una amplia y diferente variedad de ponderaciones para el promedio de nuestro canal para obtener la luminancia total.
+
+Luma es el promedio ponderado de R, G y B con corrección de gamma, en función de su contribución a la luminosidad percibida, utilizada durante mucho tiempo como la dimensión monocromática en la transmisión de la televisión a color. Para sRGB, la Rec. 709 primarios producen Y'709, NTSC digital usa Y'601 de acuerdo con Rec. 601 y algunos otros primarios también están en uso, lo que da como resultado diferentes coeficientes.
+
+{{< katex display >}} Y_{709} = 0.2126 * R + 0.7152 * G + 0.0722 * B {{< /katex >}}
+## Resultados
+
+A continuación presentamos varios ejercicios en los que se utilizaron shaders para aplicar efectos en las imágenes o incluso para crearlas, usando Luma, HSL, HSV, entre otros, los cuales se pueden encontrar en el fragment shader.
+
+
+### UV Visualization
 
 {{< details title="uv.js" open=false >}}
 ```js
@@ -88,7 +128,7 @@ function draw() {
 
 {{< /p5-global-iframe >}}
 
-## Texture sampling
+### Texture sampling
 
 {{< details title="luma.js" open=false >}}
 ```js
@@ -258,7 +298,7 @@ function draw() {
 
 {{< /p5-global-iframe >}}
 
-## Image processing
+### Image processing
 
 {{< details title="lumaImageP.frag" open=false >}}
 ```frag
@@ -496,7 +536,7 @@ function keyPressed(){
 
 {{< /p5-global-iframe >}}
 
-## Procedural texturing
+### Procedural texturing
 
 {{< details title="proc-texturing.js" open=false >}}
 ```js
@@ -549,3 +589,17 @@ function changeShader(){
 {{< /details >}}
 
 {{< p5-iframe sketch="/Visual-Computing/sketches/shaders/proc-texturing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" lib2="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.js" width="410" height="430" >}}
+
+## Conclusiones
+
+
+## Referencias
+
+ - [Patricio Gonzalez Vivo & Jen Lowe, (2015). The Book of Shaders](https://thebookofshaders.com/01/)
+ - [Omar Shehata, (2015). A Beginner's Guide to Coding Graphics Shaders](https://gamedevelopment.tutsplus.com/tutorials/a-beginners-guide-to-coding-graphics-shaders--cms-23313)
+ - [OpenGL Wiki, (2019). Shader](https://www.khronos.org/opengl/wiki/Shader)
+ - [OpenGL Wiki, (2017). Vertex Shader](https://www.khronos.org/opengl/wiki/Vertex_Shader)
+ - [OpenGL Wiki, (2017). Fragment Shader](https://www.khronos.org/opengl/wiki/Fragment_Shader)
+ - [Edward Carrillo, (2017). Rasterization: Z-buffer Algorithm](https://eccarrilloe.github.io/2017/09/24/Rasterization-Z-buffer-Algorithm/)
+ - [Fabian Giesen, (2013). The barycentric conspiracy](https://fgiesen.wordpress.com/2013/02/06/the-barycentric-conspirac/)
+
